@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" data-account-invites="pending">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081c33">
+  <meta name="robots" content="noindex,follow">
+  <meta name="referrer" content="same-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https://dvrcmzszdbysscdjnxon.supabase.co; base-uri 'none'; form-action 'none'">
+  <meta name="apple-itunes-app" content="app-id=6815041207">
+  <meta name="description" content="Join your friend on Cardia World. Turn daily cardio into a growing 3D world, then visit each other’s progress.">
+  <meta property="og:title" content="You’re invited to Cardia World">
+  <meta property="og:description" content="Build a world with your daily cardio. Download Cardia World and connect with your friend.">
+  <meta property="og:image" content="https://cardiaworld.com/assets/images/cardia-world-icon-512.png">
+  <title>You’re invited · Cardia World</title>
+  <link rel="stylesheet" href="/assets/invite.css">
+  <script src="/assets/invite.js" defer></script>
+</head>
+<body>
+  <header><a class="brand" href="/"><img src="/assets/images/cardia-world-icon-512.png" alt="" width="40" height="40">Cardia World</a><a href="/support/">Need help?</a></header>
+  <main>
+    <section class="invitation" aria-labelledby="invite-title">
+      <img class="app-icon" src="/assets/images/cardia-world-icon-512.png" alt="Cardia World app icon" width="104" height="104">
+      <p class="eyebrow">Cardio is better together</p>
+      <h1 id="invite-title">You’re invited.</h1>
+      <p class="intro" id="invite-description">Build a world with your daily cardio, then connect with your friend.</p>
+      <div id="inviter" class="inviter" hidden></div>
+      <div class="actions">
+        <a id="open-app" class="button primary" href="cardiaworld://open">Open Cardia World</a>
+        <a class="button secondary" href="https://apps.apple.com/us/app/cardia-world/id6815041207">Download on the App Store</a>
+      </div>
+      <p class="hint" id="install-hint">Free on iPhone and iPad, with optional Pro features.</p>
+      <div id="invite-tools" hidden><button id="copy-invite" class="text-button" type="button">Copy invitation link</button><p id="copy-status" class="hint" role="status" aria-live="polite"></p></div>
+      <noscript><p>After downloading, return to the invitation message and tap its link again. You can also ask your friend for their username and find them in Friends.</p></noscript>
+    </section>
+    <section id="save-invite" class="save-card" hidden aria-labelledby="save-title">
+      <p class="eyebrow">New here?</p>
+      <h2 id="save-title">Keep your invite after downloading.</h2>
+      <p>Create your free Cardia World account here to save this invitation. Confirm your email, download the app, and sign in with the same account. Your invitation will be waiting in Friends in the updated app.</p>
+      <p class="hint">Prefer to sign up in the app? Download it, then return to your original message and tap the invite link again.</p>
+      <button type="button" id="show-account" class="button secondary">Save my invitation</button>
+      <form id="account-form" method="post" hidden>
+        <h3 id="account-heading">Create your Cardia World account</h3>
+        <label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="254">
+        <div id="username-field"><label for="username">Choose a username</label><input id="username" name="username" type="text" autocomplete="username" pattern="[a-zA-Z0-9_]{3,24}" minlength="3" maxlength="24" aria-describedby="username-help"><small id="username-help">3–24 letters, numbers or underscores.</small></div>
+        <label for="password">Password</label><input id="password" name="password" type="password" autocomplete="new-password" minlength="6" required>
+        <div id="confirm-field"><label for="confirm-password">Confirm password</label><input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="6"></div>
+        <p class="hint">Your account is used in the app too. Read our <a href="/privacy/">Privacy Policy</a>.</p>
+        <button id="submit-account" type="submit" class="button primary">Create account & save invite</button>
+        <button id="account-mode" type="button" class="text-button">Already have an account? Sign in</button>
+      </form>
+      <p id="account-status" role="status" aria-live="polite"></p>
+      <p class="hint">Invites never add friends automatically. You choose whether to send a friend request, and your friend chooses whether to accept.</p>
+    </section>
+  </main>
+  <footer><a href="/">About Cardia World</a><a href="/privacy/">Privacy</a><a href="/support/">Support</a></footer>
+</body>
+</html>

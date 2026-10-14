@@ -23,14 +23,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Test invitation flows
+        run: node --test .github/tests/*.test.mjs
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
+      - name: Archive site including Apple link association
+        run: tar --dereference --hard-dereference --exclude=.git --exclude=.github --exclude=.env\* -cf "$RUNNER_TEMP/artifact.tar" .
       - name: Upload site
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          path: .
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
