@@ -126,6 +126,12 @@ h1, h2, h3 { margin: 0; font-family: 'Manrope', sans-serif; letter-spacing: -.04
 .section-heading h2, .privacy-callout h2, .final-cta h2 { margin: .8rem 0 1rem; font-size: clamp(2.15rem, 4vw, 3.8rem); }
 .section-heading p, .privacy-callout p, .final-cta p { margin: 0; color: var(--cream-muted); font-size: 1.02rem; }
 
+.video-showcase { padding: 50px 0 80px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 380px); align-items: center; gap: 5rem; scroll-margin-top: 2rem; }
+.video-showcase .section-heading { margin: 0; }
+.video-preview { width: 100%; max-width: 380px; margin: 0; justify-self: center; }
+.video-preview video { display: block; width: 100%; height: auto; aspect-ratio: 512 / 910; border: 1px solid var(--line); border-radius: 24px; background: var(--navy-900); box-shadow: var(--shadow); }
+.video-preview figcaption { margin-top: .9rem; color: var(--cream-muted); font-size: .85rem; text-align: center; }
+
 .progression { padding: 110px 0 40px; }
 .progression-frame { padding: .5rem; border: 1px solid var(--line); border-radius: 30px; background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); box-shadow: var(--shadow); overflow: hidden; }
 .progression-frame img { width: 100%; border-radius: 23px; }
@@ -215,6 +221,8 @@ h1, h2, h3 { margin: 0; font-family: 'Manrope', sans-serif; letter-spacing: -.04
   .site-nav a { padding: .75rem; }
   .hero { min-height: auto; padding-top: 130px; grid-template-columns: 1fr; gap: 3rem; }
   .hero-copy { max-width: 760px; }
+  .video-showcase { grid-template-columns: 1fr; gap: 2.5rem; padding-block: 40px 60px; }
+  .video-showcase .section-heading { max-width: 760px; }
   .hero-art { width: min(80%, 510px); justify-self: center; }
   .world-grid { grid-template-columns: 1fr; }
   .world-card { display: grid; grid-template-columns: minmax(220px, .75fr) 1fr; }
@@ -238,6 +246,7 @@ h1, h2, h3 { margin: 0; font-family: 'Manrope', sans-serif; letter-spacing: -.04
   .floating-badge { padding: .55rem .7rem; font-size: .7rem; }
   .badge-one { left: -1rem; }
   .badge-two { right: -.6rem; }
+  .video-preview video { border-radius: 18px; }
   .progression { padding-top: 80px; }
   .section-heading { text-align: left; }
   .worlds { padding-block: 80px; }
