@@ -32,7 +32,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img { display: block; max-width: 100%; }
+img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 button, input, textarea { font: inherit; }
 
@@ -267,3 +267,55 @@ h1, h2, h3 { margin: 0; font-family: 'Manrope', sans-serif; letter-spacing: -.04
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* Product guides and discovery links share the main site's visual language. */
+.discovery-resources { padding: 30px 0 100px; }
+.resource-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; }
+.resource-card { display: flex; flex-direction: column; padding: 1.8rem; border: 1px solid var(--line); border-radius: 24px; background: var(--surface); text-decoration: none; transition: border-color .2s, background .2s; }
+.resource-card:hover, .resource-card:focus-visible { border-color: var(--turquoise); background: var(--navy-800); }
+.resource-card h3 { margin: .9rem 0; font-size: 1.5rem; line-height: 1.2; }
+.resource-card p { margin: 0 0 1.5rem; color: var(--cream-muted); }
+.resource-action { margin-top: auto; color: var(--turquoise); font-weight: 700; }
+.guide-main { width: min(1180px, calc(100% - 2rem)); margin: 0 auto; padding: 30px 0 80px; }
+.breadcrumbs { display: flex; flex-wrap: wrap; gap: .65rem; color: var(--cream-muted); font-size: .85rem; }
+.breadcrumbs a { color: var(--turquoise); }
+.guide-hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 3.5rem; align-items: center; padding: 50px 0 70px; }
+.guide-intro h1 { margin: 1rem 0 1.4rem; font-size: clamp(2.7rem, 5vw, 4.9rem); line-height: 1.06; }
+.guide-intro > p { max-width: 680px; color: var(--cream-muted); font-size: 1.08rem; }
+.guide-intro .guide-availability { font-size: .82rem; }
+.guide-visual, .guide-video { margin: 0; min-width: 0; }
+.guide-visual img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 24px; background: var(--navy-900); }
+.guide-visual figcaption, .guide-video figcaption { margin-top: .8rem; color: var(--cream-muted); font-size: .8rem; text-align: center; }
+.guide-video { width: min(100%, 320px); justify-self: center; }
+.guide-video video { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 24px; background: var(--navy-900); box-shadow: var(--shadow); }
+.guide-body { display: grid; grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr); gap: 4rem; align-items: start; scroll-margin-top: 2rem; }
+.guide-article { min-width: 0; }
+.guide-article section { margin-bottom: 3.5rem; }
+.guide-article h2 { margin: 0 0 1.1rem; font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.15; }
+.guide-article p, .guide-article li { color: var(--cream-muted); }
+.guide-article li { padding-left: .3rem; margin-bottom: 1.2rem; }
+.guide-article strong { color: var(--cream); }
+.guide-article a { color: var(--turquoise); text-underline-offset: .2em; }
+.guide-article .faq-list details p { margin-right: 0; }
+.guide-aside { padding: 1.5rem; border: 1px solid var(--line); border-radius: 24px; background: var(--surface); }
+.guide-aside h2 { margin: .8rem 0 1rem; font-size: 1.6rem; }
+.guide-aside a { display: block; padding: .7rem 0; color: var(--turquoise); border-bottom: 1px solid var(--line); text-underline-offset: .2em; }
+.guide-aside p { margin: 1.2rem 0 0; color: var(--cream-muted); font-size: .9rem; }
+.guide-cta { margin-top: 2rem; padding: 3rem; border: 1px solid var(--line); border-radius: 28px; background: var(--navy-800); text-align: center; }
+.guide-cta h2 { font-size: clamp(2rem, 4vw, 3rem); }
+.guide-cta p { color: var(--cream-muted); margin-bottom: 1.5rem; }
+.guide-footer nav { flex-wrap: wrap; }
+@media (max-width: 900px) {
+  .resource-grid { grid-template-columns: 1fr; }
+  .guide-hero { grid-template-columns: 1fr; gap: 2rem; padding-top: 35px; }
+  .guide-visual { width: min(100%, 600px); justify-self: center; }
+  .guide-body { grid-template-columns: 1fr; gap: 0; }
+  .guide-aside { margin-bottom: 2rem; }
+}
+@media (max-width: 620px) {
+  .guide-intro h1 { font-size: clamp(2.5rem, 11vw, 3.8rem); }
+  .guide-hero { padding-bottom: 45px; }
+  .guide-cta { padding: 2rem 1.2rem; }
+  .resource-card { padding: 1.4rem; }
+}
+
