@@ -63,7 +63,7 @@ button, input, textarea { font: inherit; }
 .site-header.compact { position: relative; }
 .brand { display: flex; align-items: center; gap: 0.72rem; text-decoration: none; font: 800 1.08rem/1 'Manrope', sans-serif; letter-spacing: -0.02em; }
 .brand img { width: 42px; height: 42px; border-radius: 12px; box-shadow: 0 8px 22px rgba(0,0,0,.22); }
-.site-nav { display: flex; align-items: center; gap: 2rem; }
+.site-nav { display: flex; align-items: center; gap: clamp(.85rem, 1.8vw, 2rem); }
 .site-nav a { color: var(--cream-muted); text-decoration: none; font-size: 0.92rem; font-weight: 600; transition: color .2s ease; }
 .site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--cream); }
 .menu-button { display: none; width: 44px; height: 44px; padding: 10px; border: 1px solid var(--line); border-radius: 12px; color: inherit; background: rgba(255,255,255,.05); }
@@ -174,7 +174,7 @@ h1, h2, h3 { margin: 0; font-family: 'Manrope', sans-serif; letter-spacing: -.04
 .footer-brand div { display: grid; }
 .footer-brand strong { color: var(--cream); font: 800 .92rem/1.2 'Manrope', sans-serif; }
 .footer-brand span { font-size: .72rem; }
-.site-footer nav { display: flex; gap: 1.2rem; }
+.site-footer nav { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; }
 .site-footer nav a { color: var(--cream-muted); text-decoration: none; }
 .site-footer p { margin: 0; white-space: nowrap; }
 
@@ -319,3 +319,22 @@ h1, h2, h3 { margin: 0; font-family: 'Manrope', sans-serif; letter-spacing: -.04
   .resource-card { padding: 1.4rem; }
 }
 
+
+/* A direct contact route for acquisition and partnership conversations. */
+.business-contact { margin-top: 100px; padding: clamp(1.6rem, 4vw, 3.5rem); display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); align-items: center; gap: 3rem; border: 1px solid rgba(243,201,105,.3); border-radius: 30px; background: radial-gradient(circle at 100% 0, rgba(243,201,105,.1), transparent 26rem), var(--navy-900); scroll-margin-top: 2rem; }
+.business-copy h2 { margin: .8rem 0 1.2rem; font-size: clamp(2rem, 3.5vw, 3.2rem); }
+.business-copy p { margin: 0; color: var(--cream-muted); }
+.business-copy .business-details { margin-top: 1rem; font-size: .9rem; }
+.business-actions { display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; min-width: 0; }
+.business-actions .button { gap: .7rem; }
+.business-email { color: var(--turquoise); overflow-wrap: anywhere; text-underline-offset: .2em; }
+.business-actions p { margin: 0; color: var(--cream-muted); font-size: .85rem; }
+.business-actions p a { color: var(--turquoise); text-underline-offset: .2em; }
+.business-contact a:focus-visible { outline: 3px solid var(--turquoise); outline-offset: 5px; }
+@media (max-width: 900px) {
+  .business-contact { grid-template-columns: 1fr; gap: 2rem; }
+  .business-actions { align-items: flex-start; text-align: left; }
+}
+@media (max-width: 620px) {
+  .business-contact { margin-top: 70px; border-radius: 24px; }
+}
