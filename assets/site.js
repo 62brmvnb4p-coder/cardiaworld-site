@@ -1,6 +1,38 @@
 const menuButton = document.querySelector('[data-menu-button]');
 const nav = document.querySelector('[data-nav]');
 
+// Apple campaign attribution uses the provider token generated in App Store Connect.
+// Only these public channel labels are forwarded; no cookies or visitor IDs are used.
+(() => {
+  const params = new URLSearchParams(window.location.search);
+  const source = (params.get('from') || params.get('utm_source') || '').toLowerCase();
+  const medium = (params.get('utm_medium') || '').toLowerCase();
+  const channels = new Set(['tiktok', 'facebook', 'instagram']);
+  const paid = new Set(['paid', 'paid_social', 'cpc', 'ppc', 'ads']).has(medium);
+  const campaign = channels.has(source) ? `${source}_${paid ? 'paid' : 'organic'}` : 'website';
+
+  document.querySelectorAll('a[href*="apps.apple.com"]').forEach((link) => {
+    const destination = new URL(link.href, window.location.href);
+    if (destination.hostname !== 'apps.apple.com' || !destination.pathname.endsWith('/id6815041207')) return;
+    destination.searchParams.set('pt', '129494535');
+    destination.searchParams.set('ct', campaign);
+    destination.searchParams.set('mt', '8');
+    link.href = destination.href;
+  });
+
+  // Retain the channel while someone reads another public marketing page.
+  if (!channels.has(source)) return;
+  const marketingPages = new Set(['/', '/how-it-works/', '/walking-motivation-app/', '/cardio-motivation-app/']);
+  document.querySelectorAll('a[href]').forEach((link) => {
+    if (link.getAttribute('href').startsWith('#')) return;
+    const destination = new URL(link.href, window.location.href);
+    if (destination.origin !== window.location.origin || !marketingPages.has(destination.pathname)) return;
+    destination.searchParams.set('from', source);
+    destination.searchParams.set('utm_medium', paid ? 'paid_social' : 'organic_social');
+    link.href = destination.href;
+  });
+})();
+
 if (menuButton && nav) {
   menuButton.addEventListener('click', () => {
     const open = menuButton.getAttribute('aria-expanded') === 'true';
