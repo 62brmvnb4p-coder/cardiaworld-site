@@ -7,7 +7,7 @@ const nav = document.querySelector('[data-nav]');
   const params = new URLSearchParams(window.location.search);
   const source = (params.get('from') || params.get('utm_source') || '').toLowerCase();
   const medium = (params.get('utm_medium') || '').toLowerCase();
-  const channels = new Set(['tiktok', 'facebook', 'instagram']);
+  const channels = new Set(['tiktok', 'facebook', 'instagram', 'reddit']);
   const paid = new Set(['paid', 'paid_social', 'cpc', 'ppc', 'ads']).has(medium);
   const campaign = channels.has(source) ? `${source}_${paid ? 'paid' : 'organic'}` : 'website';
 
