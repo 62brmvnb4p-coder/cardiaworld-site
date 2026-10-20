@@ -31,4 +31,10 @@ Email: `support@cardiaworld.com`
 
 ## Discovery
 
-Public discovery pages have unique titles, descriptions, canonical URLs, social metadata, and breadcrumb structured data. The homepage links to all guides; the sitemap lists the six canonical public pages. The app video is unchanged and has its own watch page. Search Console verification and indexing requests must be completed in the owner’s approved Google account; a published sitemap alone does not prove submission or indexing.
+Public discovery pages have unique titles, descriptions, canonical URLs, social metadata, and breadcrumb structured data. The homepage links to all guides; the sitemap lists the six canonical public pages. The homepage and watch page share the approved 33-second video with English captions and the app-icon poster. Search Console verification and indexing requests must be completed in the owner’s approved Google account; a published sitemap alone does not prove submission or indexing.
+
+## Video branding standard
+
+Use the green, blue, and clear water-to-app-icon logo splash before all other footage and again at the end of Cardia World ad videos. The small `cardiaworld.com` beneath the icon must form from animated water droplets. Use the approved rushing-water sound with faint air pressure and a quiet woman’s sigh. For this approved ad, the clearer original jogging woman is the first content shot immediately after the opening splash.
+
+The approved 2026-10-19 video is `/assets/videos/cardia-world-water-logo-20261019.mp4` (33 seconds, 1080 × 1920). Both video players show the app icon before playback. Keep caption timings and VideoObject durations aligned when changing the video. Review previews contain full audio and are delivered as one smaller downloadable MP4.
