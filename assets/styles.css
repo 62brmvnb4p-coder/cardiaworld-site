@@ -158,6 +158,9 @@ h1, h2, h3 { margin: 0; font-family: 'Manrope', sans-serif; letter-spacing: -.04
 
 .privacy-callout { padding: 4rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4rem; border: 1px solid rgba(112,201,143,.22); border-radius: 30px; background: radial-gradient(circle at 85% 50%, rgba(112,201,143,.15), transparent 20rem), #09213b; box-shadow: var(--shadow); }
 .privacy-callout > div:first-child { max-width: 760px; }
+.apple-health-video { grid-template-columns: minmax(0, 1fr) minmax(0, 300px); gap: 3rem; scroll-margin-top: 2rem; }
+.apple-health-video p + p { margin-top: 1rem; }
+.apple-health-video video { aspect-ratio: 9 / 16; }
 .text-link { display: inline-block; margin-top: 1.4rem; color: var(--turquoise); text-decoration: none; font-weight: 800; }
 .text-link span { display: inline-block; transition: transform .2s; }
 .text-link:hover span { transform: translateX(4px); }
@@ -231,6 +234,8 @@ h1, h2, h3 { margin: 0; font-family: 'Manrope', sans-serif; letter-spacing: -.04
   .steps { grid-template-columns: 1fr; }
   .step { min-height: 0; }
   .privacy-callout { padding: 2.5rem; grid-template-columns: 1fr; }
+  .apple-health-video { gap: 2rem; }
+  .apple-health-video .video-preview { max-width: 300px; }
   .privacy-seal { display: none; }
   .site-footer { grid-template-columns: 1fr auto; }
   .site-footer > p { grid-column: 1 / -1; }
