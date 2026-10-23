@@ -5,24 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#081c33">
   <meta name="robots" content="noindex">
-  <title>Email confirmed · Cardia World</title>
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https://dvrcmzszdbysscdjnxon.supabase.co; form-action 'none'; base-uri 'none'">
+  <title>Your account · Cardia World</title>
   <meta name="apple-itunes-app" content="app-id=6815041207">
-  <script src="/assets/confirmed.js" defer></script>
-  <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; color: #f7fbff; background: linear-gradient(160deg,#081c33,#174d70); font: 16px/1.5 system-ui,-apple-system,sans-serif; }
-    main { width: min(100%,480px); padding: 36px; border: 1px solid #ffffff30; border-radius: 24px; background: #ffffff12; box-shadow: 0 24px 70px #0003; }
-    img { width: 80px; height: 80px; object-fit: contain; }
-    h1 { font-size: clamp(27px,7vw,38px); line-height: 1.15; margin: 24px 0 12px; }
-    p { color: #c6dae7; margin: 0 0 20px; }
-    a { color: #f5d369; }
-  </style>
+  <link rel="stylesheet" href="/assets/account.css?v=recovery-20261022">
+  <script src="/assets/confirmed.js?v=recovery-20261022" defer></script>
 </head>
 <body>
   <main>
     <img src="/assets/images/cardia-world-icon-512.png?v=app-icon-0dba94c9" alt="">
-    <h1 id="confirmation-title">Email confirmed.</h1>
-    <p id="confirmation-message">Your Cardia World account is ready. Download the app or return to it, then sign in with the same email and password. If you saved a friend invitation, it will appear in Friends in version 1.0.1 or later.</p>
+    <h1 id="confirmation-title">Return to Cardia World.</h1>
+    <p id="confirmation-message">Open the app to sign in. To reset your password, request an email and open the newest link.</p>
+    <form id="change-password-form" hidden>
+      <label for="new-password">New password</label>
+      <input id="new-password" type="password" autocomplete="new-password" minlength="6" maxlength="128" required disabled>
+      <label for="repeat-password">Repeat new password</label>
+      <input id="repeat-password" type="password" autocomplete="new-password" minlength="6" maxlength="128" required disabled>
+      <button id="save-password" type="submit" disabled>Update password</button>
+    </form>
+    <p id="password-status" class="status" role="status" aria-live="polite"></p>
+    <p id="request-another-reset"><a href="/reset-password/">Request a password-reset email</a></p>
+    <noscript><p>Enable JavaScript to use a password-reset link.</p></noscript>
     <p><a href="https://apps.apple.com/us/app/cardia-world/id6815041207?pt=129494535&amp;ct=website&amp;mt=8">Download Cardia World on the App Store</a></p>
     <p><a href="cardiaworld://open">Open Cardia World</a></p>
     <a href="/">Visit Cardia World</a>

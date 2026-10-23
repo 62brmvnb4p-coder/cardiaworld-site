@@ -64,7 +64,10 @@
       signal: AbortSignal.timeout(25000),
     });
     const result = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(result.msg || result.message || result.error_description || 'Could not save your invitation. Please try again.');
+    if (!response.ok) {
+      if (['user_already_exists', 'email_exists'].includes(result.code ?? result.error_code)) throw new Error('An account with this email already exists. Sign in or use Forgot password to reset it.');
+      throw new Error(result.msg || result.message || result.error_description || 'Could not save your invitation. Please try again.');
+    }
     return result;
   }
   byId('account-form').addEventListener('submit', async event => {
@@ -88,9 +91,11 @@
       if (creating) {
         const newUsername = byId('username').value.trim();
         if (!validUsername(newUsername)) throw new Error('Choose a username with 3–24 letters, numbers or underscores.');
-        await authRequest('/auth/v1/signup?redirect_to=' + encodeURIComponent('https://cardiaworld.com/confirmed/'), {
+        const result = await authRequest('/auth/v1/signup?redirect_to=' + encodeURIComponent('https://cardiaworld.com/confirmed/'), {
           email, password, data: { username: newUsername, friend_invite_username: username },
         });
+        const identities = result.user?.identities ?? result.identities;
+        if (!result.access_token && Array.isArray(identities) && identities.length === 0) throw new Error('An account with this email already exists. Sign in or use Forgot password to reset it.');
         status.textContent = 'Check your email to confirm your account. Then download Cardia World and sign in with this same email and password. In version 1.0.1 or later, the invitation from @' + username + ' will appear in Friends. On version 1.0, tap this invitation link again after signing in.';
       } else {
         const session = await authRequest('/auth/v1/token?grant_type=password', { email, password });

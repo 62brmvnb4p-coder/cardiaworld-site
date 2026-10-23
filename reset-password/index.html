@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081c33">
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https://dvrcmzszdbysscdjnxon.supabase.co; form-action 'none'; base-uri 'none'">
+  <title>Reset your password · Cardia World</title>
+  <link rel="stylesheet" href="/assets/account.css?v=recovery-20261022">
+  <script src="/assets/reset-password.js?v=recovery-20261022" defer></script>
+</head>
+<body>
+  <main>
+    <img src="/assets/images/cardia-world-icon-512.png?v=app-icon-0dba94c9" alt="">
+    <h1>Forgot your password?</h1>
+    <p>Enter the email address for your existing Cardia World account. We’ll email you a link to choose a new password.</p>
+    <form id="request-reset-form">
+      <label for="reset-email">Account email</label>
+      <input id="reset-email" type="email" autocomplete="email" inputmode="email" maxlength="254" required>
+      <button id="request-reset" type="submit" disabled>Send password-reset link</button>
+    </form>
+    <p id="request-status" class="status" role="status" aria-live="polite"></p>
+    <p class="small">Look for an email from noreply@auth.cardiaworld.com, including in Spam or Junk. Open the newest link, choose a password, then return to the app and sign in.</p>
+    <noscript><p>Enable JavaScript to request a password-reset email.</p></noscript>
+    <p class="links"><a href="cardiaworld://open">Open Cardia World</a> · <a href="/support/">Get help</a></p>
+    <a href="/">Visit Cardia World</a>
+  </main>
+</body>
+</html>

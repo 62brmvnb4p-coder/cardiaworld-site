@@ -102,3 +102,16 @@ test('email failures stay visible and allow retry without retaining passwords or
   assert.equal(p.element('submit-account').disabled, false);
   assert.equal(p.element('password').value, '');
 });
+
+test('a repeat signup explains that the account exists instead of claiming to send another confirmation', async () => {
+  const p = page('?username=ExampleFriend', true, [{ ok: true, payload: { identities: [] } }]);
+  await p.click('show-account');
+  p.element('email').value = 'existing@example.invalid';
+  p.element('username').value = 'ExistingUser';
+  p.element('password').value = p.element('confirm-password').value = 'synthetic-password';
+  await p.submit();
+  assert.match(p.element('account-status').textContent, /account with this email already exists/);
+  assert.doesNotMatch(p.element('account-status').textContent, /Check your email/);
+  assert.equal(p.element('account-form').hidden, false);
+  assert.equal(p.element('password').value, '');
+});
