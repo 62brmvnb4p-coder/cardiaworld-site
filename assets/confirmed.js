@@ -25,7 +25,7 @@
     message.textContent = 'It may have expired or already been used. Request a new password-reset email, then open the newest link.';
     another.hidden = false;
   }
-  window.addEventListener('pagehide', lock);
+  window.addEventListener('pagehide', () => { if (token) unavailable(); else lock(); });
   async function auth(method, endpoint, body, bearer = token) {
     const response = await fetch(origin + '/auth/v1/' + endpoint, {
       method, headers: { apikey: key, Authorization: `Bearer ${bearer}`, ...(body ? { 'Content-Type': 'application/json' } : {}) },

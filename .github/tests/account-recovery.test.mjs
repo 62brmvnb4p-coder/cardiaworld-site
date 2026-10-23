@@ -95,6 +95,7 @@ test('leaving the page discards recovery access and an uncertain update never cl
   p.events.pagehide();
   await p.submit('change-password-form'); assert.equal(p.calls.length, 2);
   assert.equal(p.element('change-password-form').hidden, true);
+  assert.equal(p.element('request-another-reset').hidden, false);
 });
 
 test('signup confirmation still returns to the app and discards tokens without starting recovery', () => {
