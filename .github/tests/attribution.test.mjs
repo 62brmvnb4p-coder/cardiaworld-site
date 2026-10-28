@@ -13,6 +13,8 @@ function visit(search) {
     { href: 'https://example.com/' },
   ].map(link => ({ ...link, getAttribute: () => link.href }));
   const document = {
+    head: { appendChild() {} },
+    createElement: tag => ({ tagName: tag }),
     querySelector: () => null,
     querySelectorAll: selector => selector === 'a[href*="apps.apple.com"]'
       ? [links[0], links[2]] : selector === 'a[href]' ? links : [],
