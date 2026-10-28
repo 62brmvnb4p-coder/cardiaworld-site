@@ -102,14 +102,70 @@
     "oneH1PerPage": true,
     "structuredDataJsonValid": true,
     "internalLinksAndAssetsResolved": true,
-    "accountPagesInSitemap": false
+    "accountPagesInSitemap": false,
+    "liveGoogleSmartphoneRenderingVerified": true,
+    "liveGoogleIndexabilityPassed": true
   },
   "deployment": {
-    "status": "pending"
+    "status": "success",
+    "commit": "61c11b51e9f13d6965cce2537e008353957a2312",
+    "runId": 40648973788,
+    "jobId": 122684326964,
+    "url": "https://github.com/62brmvnb4p-coder/cardiaworld-site/actions/runs/40648973788",
+    "tests": 23,
+    "passed": 23,
+    "failed": 0,
+    "publicGuideVerified": true,
+    "publicHomeCardioWalkingTitlesVerified": true,
+    "internalGuideLinksVerified": true,
+    "desktopVisualVerified": true,
+    "walkingImagesLoadedAfterLoad": true
   },
   "googleSubmission": {
-    "status": "pending",
-    "notYetIndexedNewPage": true
+    "status": "sitemap-and-four-url-requests-accepted",
+    "sitemap": {
+      "url": "https://cardiaworld.com/sitemap.xml",
+      "confirmation": "Sitemap submitted successfully",
+      "submittedDate": "2026-10-28",
+      "reportedStatus": "Success",
+      "reportedLastRead": "2026-10-26",
+      "reportedDiscoveredPages": 6,
+      "note": "Resubmission accepted. Seven URLs are in the live sitemap; the displayed discovery count has not refreshed."
+    },
+    "requests": [
+      {
+        "url": "https://cardiaworld.com/build-a-cardio-habit/",
+        "indexStateBeforeRequest": "URL is not on Google; URL is unknown to Google",
+        "liveTest": "URL is available to Google; Page can be indexed",
+        "renderedWith": "Google Inspection Tool smartphone",
+        "breadcrumbItemsValid": 1,
+        "liveTestLocalTime": "2026-10-28T03:19:00-04:00",
+        "mobileScreenshotVisuallyVerified": true,
+        "confirmation": "Indexing requested",
+        "queue": "URL was added to a priority crawl queue",
+        "indexed": false
+      },
+      {
+        "url": "https://cardiaworld.com/",
+        "indexStateBeforeRequest": "URL is on Google; Page is indexed",
+        "confirmation": "Indexing requested",
+        "queue": "URL was added to a priority crawl queue"
+      },
+      {
+        "url": "https://cardiaworld.com/cardio-motivation-app/",
+        "indexStateBeforeRequest": "URL is on Google; Page is indexed",
+        "confirmation": "Indexing requested",
+        "queue": "URL was added to a priority crawl queue"
+      },
+      {
+        "url": "https://cardiaworld.com/walking-motivation-app/",
+        "indexStateBeforeRequest": "URL is on Google; Page is indexed",
+        "confirmation": "Indexing requested",
+        "queue": "URL was added to a priority crawl queue"
+      }
+    ],
+    "completedAt": "2026-10-28T07:27:03.204Z",
+    "note": "Acceptance into Google's crawl queue is confirmed for all four URLs. New guide indexing and any ranking improvement are not yet confirmed."
   },
   "preserved": {
     "approvedVideos": true,
@@ -118,5 +174,10 @@
     "pricingAndSubscriptions": true,
     "privacyConsentRules": true,
     "adCampaigns": true
+  },
+  "completedAt": "2026-10-28T07:27:03.204Z",
+  "outreach": {
+    "messagesSent": 0,
+    "note": "No direct outreach recipients were specified. No third-party messages or new paid campaigns were sent."
   }
 }
