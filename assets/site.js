@@ -68,3 +68,10 @@ if (!reducedMotion && 'IntersectionObserver' in window) {
 } else {
   reveals.forEach((item) => item.classList.add('visible'));
 }
+
+// Optional website analytics manages consent before loading Google's tag.
+const analytics = document.createElement('script');
+analytics.src = '/assets/analytics.js';
+analytics.async = true;
+document.head.appendChild(analytics);
+

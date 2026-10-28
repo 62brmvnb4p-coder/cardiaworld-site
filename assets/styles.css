@@ -18,6 +18,16 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
+.analytics-choice { position: fixed; z-index: 90; bottom: 1rem; left: 1rem; width: min(460px, calc(100% - 2rem)); padding: 1.25rem; color: var(--cream); background: var(--navy-900); border: 1px solid var(--turquoise); border-radius: 16px; box-shadow: var(--shadow); font-size: .9rem; }
+.analytics-choice p { margin: .5rem 0; color: var(--cream-muted); }
+.analytics-choice a { text-underline-offset: .2em; }
+.analytics-actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1rem; }
+.analytics-button { flex: 1; min-height: 44px; padding: .55rem .85rem; border: 1px solid var(--cream-muted); border-radius: 9px; color: var(--cream); background: var(--navy-800); cursor: pointer; }
+.analytics-button:hover { background: var(--navy-700); }
+.analytics-button:disabled { opacity: .5; cursor: default; }
+.analytics-preferences { padding: 0; border: 0; background: transparent; color: inherit; text-decoration: underline; text-underline-offset: .2em; font: inherit; cursor: pointer; }
+.analytics-button:focus-visible, .analytics-preferences:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
@@ -343,3 +353,4 @@ h1, h2, h3 { margin: 0; font-family: 'Manrope', sans-serif; letter-spacing: -.04
 @media (max-width: 620px) {
   .business-contact { margin-top: 70px; border-radius: 24px; }
 }
+

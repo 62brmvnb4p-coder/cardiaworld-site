@@ -20,7 +20,15 @@ The production custom domain is `cardiaworld.com`.
 
 App Store download buttons use Apple's campaign links with provider token `129494535`, generated in App Store Connect. The fallback campaign is `website`, including when JavaScript is disabled. Canonical URLs and structured data retain the ordinary App Store URL.
 
-For social traffic, use `https://cardiaworld.com/?from=tiktok` (or `facebook` / `instagram` / `reddit`). Add `&utm_medium=paid_social` for paid traffic. Standard `utm_source` values for those networks also work. The site carries the channel across its public marketing pages and sets the App Store campaign to `tiktok_organic`, `facebook_organic`, `instagram_organic`, `reddit_organic`, or the corresponding `_paid` campaign. Other source values fall back to `website`. No cookies, local storage, visitor identifiers, or third-party analytics scripts are used.
+For social traffic, use `https://cardiaworld.com/?from=tiktok` (or `facebook` / `instagram` / `reddit`). Add `&utm_medium=paid_social` for paid traffic. Standard `utm_source` values for those networks also work. The site carries the channel across its public marketing pages and sets the App Store campaign to `tiktok_organic`, `facebook_organic`, `instagram_organic`, `reddit_organic`, or the corresponding `_paid` campaign. Other source values fall back to `website`. Apple campaign attribution itself uses no cookies or visitor identifiers.
+
+## Website analytics
+
+Google Analytics 4 property **Cardia World website** (`561103360`), web stream `16218167663`, measurement ID `G-BQ0GPE59HT`, in existing account `268726630`. Reporting time zone: America/New_York; currency: USD. Dashboard: https://analytics.google.com/analytics/web/#/a268726630p561103360/reports/intelligenthome
+
+`assets/site.js` loads the local consent controller `assets/analytics.js`. Google's tag is loaded only after affirmative analytics consent. The six public marketing/support/privacy pages are allowlisted; account, recovery and invitation pages never initialize analytics. Advertising consent, personalization, and Google signals remain disabled; enhanced measurement is off. Consent choices expire after 180 days and can be changed from the footer. Global Privacy Control and Do Not Track disable collection. Blocked or declined analytics cannot be included in visit totals.
+
+Events: `page_view` for public pages and `app_store_click` for Cardia World's App Store buttons. Only normalized channel/medium labels are forwarded. Page addresses omit all query strings and fragments; referrers are reduced to origins; no account, Health, form, or invitation data is sent. App Store clicks measure intent, not installations. New collection begins at deployment and does not reconstruct past traffic. GA4 standard reports may take 24–48 hours; verify delivery in Realtime first.
 
 These campaign labels measure future attributed App Store activity; button clicks are not install counts. Apple may withhold small campaign cohorts and reports results after a delay. Safari's Smart App Banner is a separate path and is not included in this button attribution setup.
 
@@ -40,3 +48,4 @@ Use the green, blue, and clear water-to-app-icon logo splash before all other fo
 The approved 2026-10-19 video is `/assets/videos/cardia-world-water-logo-20261019.mp4` (33 seconds, 1080 × 1920). Both video players show the app icon before playback. Keep caption timings and VideoObject durations aligned when changing the video. Review previews contain full audio and are delivered as one smaller downloadable MP4.
 
 The approved Move Together video is `/assets/videos/cardia-world-move-together-20261022.mp4` (33 seconds, 720 × 1280; SHA-256 `748d0e665b0da91611781aa6992d70fe6eb1d28421c5681a96df1f5512722bce`). It appears in the homepage Apple Health section at `/#apple-health`, with the latest Home, Friends, and Co-op UI, a new exercise cast, and Apple Watch footage. It retains the original narrator and soundtrack, with matching English captions. The first video stays in the homepage Watch section and on the how-it-works page. Both videos play only when the visitor starts them; the added video uses `preload="none"`.
+
