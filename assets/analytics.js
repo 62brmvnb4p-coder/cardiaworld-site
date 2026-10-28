@@ -1,7 +1,7 @@
 // Website-only analytics. Never load this on account, recovery, or invitation pages.
 (() => {
   const measurementId = 'G-BQ0GPE59HT';
-  const allowedPages = new Set(['/', '/how-it-works/', '/cardio-motivation-app/', '/walking-motivation-app/', '/support/', '/privacy/']);
+  const allowedPages = new Set(['/', '/how-it-works/', '/cardio-motivation-app/', '/walking-motivation-app/', '/build-a-cardio-habit/', '/support/', '/privacy/']);
   const location = new URL(window.location.href);
   if (location.protocol !== 'https:' || !['cardiaworld.com', 'www.cardiaworld.com'].includes(location.hostname) || !allowedPages.has(location.pathname) || window.__cardiaAnalytics) return;
   window.__cardiaAnalytics = true;

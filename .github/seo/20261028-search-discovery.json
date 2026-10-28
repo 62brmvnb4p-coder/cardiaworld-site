@@ -1,0 +1,122 @@
+{
+  "preparedAt": "2026-10-28T07:15:46.929Z",
+  "app": "Cardia World",
+  "website": "https://cardiaworld.com/",
+  "repository": "62brmvnb4p-coder/cardiaworld-site",
+  "baseCommit": "c9e11b473c682d5db7e6ec97bdf5689acb388b61",
+  "authorization": "Carl: Ok proceed with doing that. Approved SEO/content/indexing work; no new Google Ads budget or external outreach authorized.",
+  "baseline": {
+    "source": "Authenticated Google Search Console UI",
+    "property": "https://cardiaworld.com/",
+    "overview": {
+      "indexed": 6,
+      "notIndexed": 0,
+      "https": 6,
+      "breadcrumbsValid": 3,
+      "videoEnhancementsValid": 2
+    },
+    "performance": {
+      "rangeSelection": "3 months",
+      "chartStart": "2026-10-14",
+      "chartEnd": "2026-10-25",
+      "lastUpdateDisplayed": "3.5 hours ago",
+      "searchType": "Web",
+      "clicks": 3,
+      "impressions": 20,
+      "ctr": "15%",
+      "averagePosition": 9.9,
+      "visibleQueries": [
+        {
+          "query": "cardio mobile app",
+          "clicks": 0,
+          "impressions": 1
+        },
+        {
+          "query": "cardia nordic",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "pages": [
+        {
+          "path": "/",
+          "clicks": 3,
+          "impressions": 9
+        },
+        {
+          "path": "/how-it-works/",
+          "clicks": 0,
+          "impressions": 11
+        },
+        {
+          "path": "/cardio-motivation-app/",
+          "clicks": 0,
+          "impressions": 8
+        },
+        {
+          "path": "/support/",
+          "clicks": 0,
+          "impressions": 3
+        },
+        {
+          "path": "/privacy/",
+          "clicks": 0,
+          "impressions": 2
+        },
+        {
+          "path": "/walking-motivation-app/",
+          "clicks": 0,
+          "impressions": 1
+        }
+      ],
+      "note": "Page impressions may count multiple pages per search. Visible query rows do not represent every query; do not equate these website clicks with app installs."
+    },
+    "sitemap": {
+      "path": "/sitemap.xml",
+      "status": "Success",
+      "submitted": "2026-10-15",
+      "lastRead": "2026-10-26",
+      "discoveredPages": 6
+    }
+  },
+  "changes": [
+    "Clearer home/cardio/walking search titles, descriptions and product explanations, preserving canonical URLs.",
+    "One original cardio habit guide with three visible CDC source links, accurate app limitations and Organization author.",
+    "Internal links, seven-URL sitemap with truthful content modification dates, Article and BreadcrumbList data.",
+    "Existing consent-only analytics and approved campaign attribution extended to the new public guide; account/recovery/invitation exclusions retained.",
+    "Compact guide navigation wired to the existing menu controller and resource cards balanced in two columns."
+  ],
+  "sources": [
+    "https://www.cdc.gov/healthy-weight-growth/physical-activity/getting-started.html",
+    "https://www.cdc.gov/physical-activity-basics/adding-adults/index.html",
+    "https://www.cdc.gov/physical-activity-basics/overcoming-barriers/index.html",
+    "https://developers.google.com/search/docs/appearance/title-link",
+    "https://developers.google.com/search/docs/appearance/structured-data/article",
+    "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap"
+  ],
+  "validation": {
+    "existingWebsiteTests": 23,
+    "allPassed": true,
+    "canonicalPages": 7,
+    "uniqueTitles": true,
+    "oneH1PerPage": true,
+    "structuredDataJsonValid": true,
+    "internalLinksAndAssetsResolved": true,
+    "accountPagesInSitemap": false
+  },
+  "deployment": {
+    "status": "pending"
+  },
+  "googleSubmission": {
+    "status": "pending",
+    "notYetIndexedNewPage": true
+  },
+  "preserved": {
+    "approvedVideos": true,
+    "appBinaries": true,
+    "appReviewSubmissions": true,
+    "pricingAndSubscriptions": true,
+    "privacyConsentRules": true,
+    "adCampaigns": true
+  }
+}

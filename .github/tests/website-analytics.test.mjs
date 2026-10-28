@@ -113,8 +113,8 @@ test('sensitive account/recovery/invitation pages and preview hosts never initia
   }
 });
 
-test('all six public pages support measurement after consent', () => {
-  for (const path of ['/', '/how-it-works/', '/cardio-motivation-app/', '/walking-motivation-app/', '/support/', '/privacy/']) {
+test('all public pages support measurement after consent', () => {
+  for (const path of ['/', '/how-it-works/', '/cardio-motivation-app/', '/walking-motivation-app/', '/build-a-cardio-habit/', '/support/', '/privacy/']) {
     const p = page({url: 'https://cardiaworld.com' + path, saved: {value: 'granted', updatedAt: Date.now() - 1000}});
     assert.equal(p.events().length, 1, path);
   }

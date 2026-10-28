@@ -8,6 +8,7 @@ Official website for **Cardia World** — “Move your body. Build your world.�
 - Cardio motivation: `/cardio-motivation-app/`
 - Walking motivation: `/walking-motivation-app/`
 - App demo and setup: `/how-it-works/`
+- Cardio habit guide: `/build-a-cardio-habit/`
 - Support: `/support/`
 - Privacy policy: `/privacy/`
 
@@ -26,7 +27,7 @@ For social traffic, use `https://cardiaworld.com/?from=tiktok` (or `facebook` / 
 
 Google Analytics 4 property **Cardia World website** (`561103360`), web stream `16218167663`, measurement ID `G-BQ0GPE59HT`, in existing account `268726630`. Reporting time zone: America/New_York; currency: USD. Dashboard: https://analytics.google.com/analytics/web/#/a268726630p561103360/reports/intelligenthome
 
-`assets/site.js` loads the local consent controller `assets/analytics.js`. Google's tag is loaded only after affirmative analytics consent. The six public marketing/support/privacy pages are allowlisted; account, recovery and invitation pages never initialize analytics. Advertising consent, personalization, and Google signals remain disabled; enhanced measurement is off. Consent choices expire after 180 days and can be changed from the footer. Global Privacy Control and Do Not Track disable collection. Blocked or declined analytics cannot be included in visit totals.
+`assets/site.js` loads the local consent controller `assets/analytics.js`. Google's tag is loaded only after affirmative analytics consent. The seven public marketing/guide/support/privacy pages are allowlisted; account, recovery and invitation pages never initialize analytics. Advertising consent, personalization, and Google signals remain disabled; enhanced measurement is off. Consent choices expire after 180 days and can be changed from the footer. Global Privacy Control and Do Not Track disable collection. Blocked or declined analytics cannot be included in visit totals.
 
 Events: `page_view` for public pages and `app_store_click` for Cardia World's App Store buttons. Only normalized channel/medium labels are forwarded. Page addresses omit all query strings and fragments; referrers are reduced to origins; no account, Health, form, or invitation data is sent. App Store clicks measure intent, not installations. New collection begins at deployment and does not reconstruct past traffic. GA4 standard reports may take 24–48 hours; verify delivery in Realtime first.
 
@@ -39,7 +40,7 @@ Email: `support@cardiaworld.com`
 
 ## Discovery
 
-Public discovery pages have unique titles, descriptions, canonical URLs, social metadata, and breadcrumb structured data. The homepage links to all guides; the sitemap lists the six canonical public pages. The homepage and watch page share the approved 33-second video with English captions and the app-icon poster. Search Console verification and indexing requests must be completed in the owner’s approved Google account; a published sitemap alone does not prove submission or indexing.
+Public discovery pages have unique titles, descriptions, canonical URLs, social metadata, and breadcrumb structured data. The homepage links to all guides; the sitemap lists the seven canonical public pages. The homepage and watch page share the approved 33-second video with English captions and the app-icon poster. Search Console verification and indexing requests must be completed in the owner’s approved Google account; a published sitemap alone does not prove submission or indexing.
 
 ## Video branding standard
 
@@ -49,3 +50,7 @@ The approved 2026-10-19 video is `/assets/videos/cardia-world-water-logo-2026101
 
 The approved Move Together video is `/assets/videos/cardia-world-move-together-20261022.mp4` (33 seconds, 720 × 1280; SHA-256 `748d0e665b0da91611781aa6992d70fe6eb1d28421c5681a96df1f5512722bce`). It appears in the homepage Apple Health section at `/#apple-health`, with the latest Home, Friends, and Co-op UI, a new exercise cast, and Apple Watch footage. It retains the original narrator and soundtrack, with matching English captions. The first video stays in the homepage Watch section and on the how-it-works page. Both videos play only when the visitor starts them; the added video uses `preload="none"`.
 
+
+## Search content update — October 28, 2026
+
+The homepage, cardio page, and walking page describe their distinct search intent without changing canonical URLs. The cardio habit guide is an original practical article with visible CDC source links, Organization authorship, Article and breadcrumb metadata, and internal links from the homepage and existing guides. No ratings, endorsements, health outcomes, or reviewer credentials are invented. Sitemap modification dates reflect changed main content or links; account/recovery/invitation pages remain outside the public sitemap and analytics allowlists. The new public guide uses the existing consent and App Store attribution rules. Search Console evidence is recorded under `.github/seo/`, which the deployment archive excludes.

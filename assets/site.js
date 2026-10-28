@@ -22,7 +22,7 @@ const nav = document.querySelector('[data-nav]');
 
   // Retain the channel while someone reads another public marketing page.
   if (!channels.has(source)) return;
-  const marketingPages = new Set(['/', '/how-it-works/', '/walking-motivation-app/', '/cardio-motivation-app/']);
+  const marketingPages = new Set(['/', '/how-it-works/', '/walking-motivation-app/', '/cardio-motivation-app/', '/build-a-cardio-habit/']);
   document.querySelectorAll('a[href]').forEach((link) => {
     if (link.getAttribute('href').startsWith('#')) return;
     const destination = new URL(link.href, window.location.href);
@@ -71,7 +71,7 @@ if (!reducedMotion && 'IntersectionObserver' in window) {
 
 // Optional website analytics manages consent before loading Google's tag.
 const analytics = document.createElement('script');
-analytics.src = '/assets/analytics.js';
+analytics.src = '/assets/analytics.js?v=20261028-seo';
 analytics.async = true;
 document.head.appendChild(analytics);
 

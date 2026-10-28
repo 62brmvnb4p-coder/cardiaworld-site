@@ -11,6 +11,7 @@ function visit(search) {
     { href: 'https://cardiaworld.com/how-it-works/' },
     { href: 'https://apps.apple.com/us/app/unrelated/id123456789' },
     { href: 'https://example.com/' },
+    { href: 'https://cardiaworld.com/build-a-cardio-habit/' },
   ].map(link => ({ ...link, getAttribute: () => link.href }));
   const document = {
     head: { appendChild() {} },
@@ -37,6 +38,8 @@ test('Reddit paid arrivals reach the matching App Store campaign and retain sour
   assert.equal(links[1].searchParams.get('utm_medium'), 'paid_social');
   assert.equal(links[2].search, '');
   assert.equal(links[3].search, '');
+  assert.equal(links[4].searchParams.get('from'), 'reddit');
+  assert.equal(links[4].searchParams.get('utm_medium'), 'paid_social');
 });
 
 test('Reddit organic, existing TikTok, and unknown-source downloads remain distinguishable', () => {
