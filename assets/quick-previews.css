@@ -1,0 +1,20 @@
+/* Short, on-demand previews keep the full setup guide easy to reach. */
+.quick-previews { margin: 0 0 4rem; padding: clamp(1.25rem, 4vw, 3rem); border: 1px solid var(--line); border-radius: 28px; background: var(--surface); scroll-margin-top: 6rem; }
+.quick-previews h2 { margin: .75rem 0 1rem; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; }
+.quick-previews > p { max-width: 750px; color: var(--cream-muted); }
+.quick-preview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 4vw, 3rem); margin-top: 2rem; }
+.quick-preview { min-width: 0; margin: 0; text-align: center; }
+.quick-preview video { display: block; width: min(100%, 290px); height: auto; aspect-ratio: 9 / 16; margin: 0 auto; border: 1px solid var(--line); border-radius: 20px; background: var(--navy-950); box-shadow: var(--shadow); }
+.quick-preview h3 { margin: 1rem 0 .4rem; font-size: 1.22rem; line-height: 1.3; }
+.quick-preview p { margin: .4rem auto 0; max-width: 340px; font-size: .9rem; color: var(--cream-muted); }
+.quick-preview .preview-duration { display: inline-block; margin-top: .7rem; color: var(--turquoise); font-size: .82rem; font-weight: 700; }
+.quick-preview a { color: var(--turquoise); text-underline-offset: .2em; }
+.quick-preview-links { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 1.5rem; }
+.quick-previews .preview-note { margin-top: 1.5rem; font-size: .85rem; }
+.quick-previews a:focus-visible, .quick-preview video:focus-visible { outline: 3px solid var(--gold); outline-offset: 5px; }
+@media (max-width: 640px) {
+  .quick-preview-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .quick-previews { border-radius: 22px; }
+  .quick-preview video { width: min(100%, 310px); }
+  .quick-preview-links .button { width: 100%; text-align: center; justify-content: center; }
+}

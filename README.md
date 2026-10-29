@@ -54,3 +54,16 @@ The approved Move Together video is `/assets/videos/cardia-world-move-together-2
 ## Search content update — October 28, 2026
 
 The homepage, cardio page, and walking page describe their distinct search intent without changing canonical URLs. The cardio habit guide is an original practical article with visible CDC source links, Organization authorship, Article and breadcrumb metadata, and internal links from the homepage and existing guides. No ratings, endorsements, health outcomes, or reviewer credentials are invented. Sitemap modification dates reflect changed main content or links; account/recovery/invitation pages remain outside the public sitemap and analytics allowlists. The new public guide uses the existing consent and App Store attribution rules. Search Console evidence is recorded under `.github/seo/`, which the deployment archive excludes.
+
+
+
+## Quick previews — October 29, 2026
+
+The approved Move See It Grow and Day and Night ads are available at
+`/how-it-works/#quick-previews`, linked directly from the homepage hero and Watch
+section. Each is 25 seconds and about 3 MB, with native controls, inline playback,
+English captions and no autoplay or video preloading. Starting one player pauses
+the others. The two new ads have a softer opening splash; narration and picture
+timing are retained. The existing homepage videos and setup-guide preview remain
+in their existing sections. Apple Health remains directly after the homepage
+Watch section. Existing consent and App Store campaign attribution apply.
