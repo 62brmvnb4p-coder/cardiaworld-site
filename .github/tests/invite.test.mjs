@@ -117,14 +117,27 @@ test('a repeat signup explains that the account exists instead of claiming to se
 });
 
 
-test('referral invitation survives installation as a visible code and safe app link without account requests', async()=>{
+test('referral invitation carries its details in one link without account requests or manual code instructions', async()=>{
  const p=page('?ref=AbCdEf0123',false);
  assert.equal(p.element('open-app').href,'cardiaworld://referral/abcdef0123');
- assert.match(p.element('inviter').textContent,/ABCDEF0123/);
- assert.match(p.element('install-hint').textContent,/first seven days/);
+ assert.equal(p.element('open-app').textContent,'Open invitation');
+ assert.doesNotMatch(p.element('inviter').textContent,/ABCDEF0123/);
+ assert.match(p.element('install-hint').textContent,/no code to type/);
  assert.equal(p.element('save-invite').hidden,true);
- await p.click('copy-invite');assert.equal(p.copied(),'ABCDEF0123');assert.equal(p.calls.length,0);
+ await p.click('copy-invite');assert.equal(p.copied(),'https://cardiaworld.com/invite/?ref=abcdef0123');assert.equal(p.calls.length,0);
 });
 test('duplicate or malformed referral codes do not activate the referral route',()=>{
  for(const q of ['?ref=abcdef0123&ref=abcdef0123','?ref=%3Cscript%3E','?ref=abc'])assert.equal(page(q,false).element('open-app').href,'cardiaworld://open');
+});
+test('one link preserves the inviter and referral while keeping the legacy friend route usable',async()=>{
+ const p=page('?username=KailB&ref=AABBCCDDEE',false);
+ assert.equal(p.element('open-app').href,'cardiaworld://friend/KailB?ref=aabbccddee');
+ assert.equal(p.element('inviter').textContent,'You’re invited by @KailB');
+ await p.click('copy-invite');assert.equal(p.copied(),'https://cardiaworld.com/invite/?username=KailB&ref=aabbccddee');
+ assert.equal(p.calls.length,0);assert.equal(p.element('account-form').hidden,true);
+});
+test('a malformed inviter cannot inject an unsafe app route into an otherwise valid referral',()=>{
+ const p=page('?username=%3Cscript%3E&ref=aabbccddee',false);
+ assert.equal(p.element('open-app').href,'cardiaworld://referral/aabbccddee');
+ assert.equal(p.element('inviter').textContent,'Your invitation is ready.');assert.equal(p.calls.length,0);
 });
