@@ -9,19 +9,21 @@
   const referrals=params.getAll('ref');
   const referral=referrals.length===1&&/^[a-f0-9]{10}$/i.test(referrals[0])?referrals[0].toLowerCase():null;
   if(referral){
-    const inviteUrl='https://cardiaworld.com/invite/?ref='+referral;
+    const sender=validUsername(username)?username:null;
+    const inviteUrl='https://cardiaworld.com/invite/?'+(sender?'username='+encodeURIComponent(sender)+'&':'')+'ref='+referral;
     byId('invite-title').textContent='Grow a world together.';
-    byId('invite-description').textContent='Use this invitation code in Cardia World, then complete three different qualifying cardio days to earn a Friendship Garden for you and your inviter.';
+    byId('invite-description').textContent='Accept your invitation in Cardia World. After three cardio days, you’ll both earn a Friendship Garden.';
     byId('inviter').hidden=false;
-    byId('inviter').textContent='Invitation code: '+referral.toUpperCase();
-    byId('open-app').href='cardiaworld://referral/'+referral;
+    byId('inviter').textContent=sender?'You’re invited by @'+sender:'Your invitation is ready.';
+    byId('open-app').href=sender?'cardiaworld://friend/'+encodeURIComponent(sender)+'?ref='+referral:'cardiaworld://referral/'+referral;
+    byId('open-app').textContent='Open invitation';
     document.querySelector('meta[name="apple-itunes-app"]').content='app-id=6815041207, app-argument='+inviteUrl;
-    byId('install-hint').textContent='Requires Cardia World 1.1.26 or later. New here? Install the app, create an account, and enter this code in World activities during your first seven days. You can also return to this link after installing. Sharing Health records or adding friends is not required.';
+    byId('install-hint').textContent='New here? Download Cardia World, then come back to this invitation and tap Open invitation. Your link carries the details, so there’s no code to type. For one-tap acceptance, use version 1.1.27 or later.';
     byId('invite-tools').hidden=false;
-    byId('copy-invite').textContent='Copy invitation code';
+    byId('copy-invite').textContent='Copy invitation link';
     byId('copy-invite').addEventListener('click',async()=>{
-      try{await navigator.clipboard.writeText(referral.toUpperCase());byId('copy-status').textContent='Code copied. Paste it into World activities after installing.';}
-      catch{byId('copy-status').textContent='Your invitation code: '+referral.toUpperCase();}
+      try{await navigator.clipboard.writeText(inviteUrl);byId('copy-status').textContent='Invitation link copied. Open it again after installing Cardia World.';}
+      catch{byId('copy-status').textContent='Your invitation link: '+inviteUrl;}
     });
     return;
   }
