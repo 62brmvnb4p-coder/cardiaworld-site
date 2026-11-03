@@ -6,6 +6,25 @@
   const byId = id => document.getElementById(id);
   // Enable only after production SMTP delivery and the updated app are verified.
   const accountInvitesEnabled = document.documentElement.dataset.accountInvites === 'enabled';
+  const referrals=params.getAll('ref');
+  const referral=referrals.length===1&&/^[a-f0-9]{10}$/i.test(referrals[0])?referrals[0].toLowerCase():null;
+  if(referral){
+    const inviteUrl='https://cardiaworld.com/invite/?ref='+referral;
+    byId('invite-title').textContent='Grow a world together.';
+    byId('invite-description').textContent='Use this invitation code in Cardia World, then complete three different qualifying cardio days to earn a Friendship Garden for you and your inviter.';
+    byId('inviter').hidden=false;
+    byId('inviter').textContent='Invitation code: '+referral.toUpperCase();
+    byId('open-app').href='cardiaworld://referral/'+referral;
+    document.querySelector('meta[name="apple-itunes-app"]').content='app-id=6815041207, app-argument='+inviteUrl;
+    byId('install-hint').textContent='Requires Cardia World 1.1.26 or later. New here? Install the app, create an account, and enter this code in World activities during your first seven days. You can also return to this link after installing. Sharing Health records or adding friends is not required.';
+    byId('invite-tools').hidden=false;
+    byId('copy-invite').textContent='Copy invitation code';
+    byId('copy-invite').addEventListener('click',async()=>{
+      try{await navigator.clipboard.writeText(referral.toUpperCase());byId('copy-status').textContent='Code copied. Paste it into World activities after installing.';}
+      catch{byId('copy-status').textContent='Your invitation code: '+referral.toUpperCase();}
+    });
+    return;
+  }
   if (!validUsername(username)) {
     byId('invite-title').textContent = 'Let’s build together.';
     byId('invite-description').textContent = 'This invitation is missing a valid username. Ask your friend to send it again, or download Cardia World and search for their username in Friends.';

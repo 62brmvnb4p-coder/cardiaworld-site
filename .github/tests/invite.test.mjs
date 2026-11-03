@@ -115,3 +115,16 @@ test('a repeat signup explains that the account exists instead of claiming to se
   assert.equal(p.element('account-form').hidden, false);
   assert.equal(p.element('password').value, '');
 });
+
+
+test('referral invitation survives installation as a visible code and safe app link without account requests', async()=>{
+ const p=page('?ref=AbCdEf0123',false);
+ assert.equal(p.element('open-app').href,'cardiaworld://referral/abcdef0123');
+ assert.match(p.element('inviter').textContent,/ABCDEF0123/);
+ assert.match(p.element('install-hint').textContent,/first seven days/);
+ assert.equal(p.element('save-invite').hidden,true);
+ await p.click('copy-invite');assert.equal(p.copied(),'ABCDEF0123');assert.equal(p.calls.length,0);
+});
+test('duplicate or malformed referral codes do not activate the referral route',()=>{
+ for(const q of ['?ref=abcdef0123&ref=abcdef0123','?ref=%3Cscript%3E','?ref=abc'])assert.equal(page(q,false).element('open-app').href,'cardiaworld://open');
+});
