@@ -133,3 +133,15 @@ test('expired choices and unavailable storage fail closed; browser privacy signa
     assert.equal(p.events().length, 0);
   }
 });
+
+// Reading the complete feature guide uses the same consent gate and URL scrubbing.
+test('the feature guide waits for consent and excludes referral and account details from analytics', () => {
+  const p = page({url: 'https://cardiaworld.com/features/?from=reddit&utm_medium=cpc&ref=1122334455&email=private@example.com#next-update'});
+  assert.equal(p.head.children.length, 0);
+  p.button('Allow analytics').click();
+  const events = p.events();
+  assert.equal(events[0][1], 'page_view');
+  assert.equal(events[0][2].page_location, 'https://cardiaworld.com/features/');
+  assert(!JSON.stringify(p.commands()).includes('1122334455'));
+  assert(!JSON.stringify(p.commands()).includes('private@example.com'));
+});
