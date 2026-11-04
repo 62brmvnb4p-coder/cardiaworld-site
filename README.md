@@ -5,6 +5,7 @@ Official website for **Cardia World** — “Move your body. Build your world.�
 ## Pages
 
 - Homepage: `/`
+- Complete feature guide and next-update preview: `/features/`
 - Cardio motivation: `/cardio-motivation-app/`
 - Walking motivation: `/walking-motivation-app/`
 - App demo and setup: `/how-it-works/`
@@ -27,7 +28,7 @@ For social traffic, use `https://cardiaworld.com/?from=tiktok` (or `facebook` / 
 
 Google Analytics 4 property **Cardia World website** (`561103360`), web stream `16218167663`, measurement ID `G-BQ0GPE59HT`, in existing account `268726630`. Reporting time zone: America/New_York; currency: USD. Dashboard: https://analytics.google.com/analytics/web/#/a268726630p561103360/reports/intelligenthome
 
-`assets/site.js` loads the local consent controller `assets/analytics.js`. Google's tag is loaded only after affirmative analytics consent. The seven public marketing/guide/support/privacy pages are allowlisted; account, recovery and invitation pages never initialize analytics. Advertising consent, personalization, and Google signals remain disabled; enhanced measurement is off. Consent choices expire after 180 days and can be changed from the footer. Global Privacy Control and Do Not Track disable collection. Blocked or declined analytics cannot be included in visit totals.
+`assets/site.js` loads the local consent controller `assets/analytics.js`. Google's tag is loaded only after affirmative analytics consent. The eight public marketing/guide/support/privacy pages are allowlisted; account, recovery and invitation pages never initialize analytics. Advertising consent, personalization, and Google signals remain disabled; enhanced measurement is off. Consent choices expire after 180 days and can be changed from the footer. Global Privacy Control and Do Not Track disable collection. Blocked or declined analytics cannot be included in visit totals.
 
 Events: `page_view` for public pages and `app_store_click` for Cardia World's App Store buttons. Only normalized channel/medium labels are forwarded. Page addresses omit all query strings and fragments; referrers are reduced to origins; no account, Health, form, or invitation data is sent. App Store clicks measure intent, not installations. New collection begins at deployment and does not reconstruct past traffic. GA4 standard reports may take 24–48 hours; verify delivery in Realtime first.
 
@@ -40,7 +41,7 @@ Email: `support@cardiaworld.com`
 
 ## Discovery
 
-Public discovery pages have unique titles, descriptions, canonical URLs, social metadata, and breadcrumb structured data. The homepage links to all guides; the sitemap lists the seven canonical public pages. The homepage and watch page share the approved 33-second video with English captions and the app-icon poster. Search Console verification and indexing requests must be completed in the owner’s approved Google account; a published sitemap alone does not prove submission or indexing.
+Public discovery pages have unique titles, descriptions, canonical URLs, social metadata, and breadcrumb structured data. The homepage links to all guides; the sitemap lists the eight canonical public pages. The homepage and watch page share the approved 33-second video with English captions and the app-icon poster. Search Console verification and indexing requests must be completed in the owner’s approved Google account; a published sitemap alone does not prove submission or indexing.
 
 ## Video branding standard
 
@@ -67,3 +68,12 @@ the others. The two new ads have a softer opening splash; narration and picture
 timing are retained. The existing homepage videos and setup-guide preview remain
 in their existing sections. Apple Health remains directly after the homepage
 Watch section. Existing consent and App Store campaign attribution apply.
+
+
+## Feature refresh — November 3, 2026
+
+The homepage and `/features/` cover the public 1.1.22 features: weekly routines/rest days, activity receipts, world journal images, mayor correspondence, monthly Pro collections, free mission guests, naming/HQ exploration, local-time worlds, feedback and comfort controls. Availability is grounded in the read-only App Store Connect inspection from 2026-11-03T20:17:17Z (`READY_FOR_DISTRIBUTION` for 1.1.22), rather than the stale public web cache.
+
+The completed 1.1.27 (82) candidate remains internal TestFlight only. Rotating journal videos/Showcase Pavilion, Friendship Garden links, greenhouse/café/windmill choices, residents, weekly Together Fountain, Pro Design Studio, optional private journal backup and Home Screen widgets are all explicitly marked as next-update previews. This website publication does not authorize App Store submission or remove the personal-device approval hold.
+
+Support and privacy explain journal-image storage versus optional cloud journal backup, voluntary sharing, saved-minute captions, invitation eligibility and free/Pro participation. The public feature page joins the existing consent-based analytics and channel-attribution allowlists; account/recovery/invitation pages remain excluded. Existing approved videos, captions, campaign tokens, account routes and Apple link association are preserved.
