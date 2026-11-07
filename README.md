@@ -77,3 +77,8 @@ The homepage and `/features/` cover the public 1.1.22 features: weekly routines/
 The completed 1.1.27 (82) candidate remains internal TestFlight only. Rotating journal videos/Showcase Pavilion, Friendship Garden links, greenhouse/café/windmill choices, residents, weekly Together Fountain, Pro Design Studio, optional private journal backup and Home Screen widgets are all explicitly marked as next-update previews. This website publication does not authorize App Store submission or remove the personal-device approval hold.
 
 Support and privacy explain journal-image storage versus optional cloud journal backup, voluntary sharing, saved-minute captions, invitation eligibility and free/Pro participation. The public feature page joins the existing consent-based analytics and channel-attribution allowlists; account/recovery/invitation pages remain excluded. Existing approved videos, captions, campaign tokens, account routes and Apple link association are preserved.
+
+
+## Release availability correction - November 7, 2026
+
+The owner-requested growth audit verified App Store Connect lists 1.1.29 (84) as Ready for Distribution. The homepage, feature guide, support and privacy pages now describe its already released journal videos, invitation rewards, mayor naming, widgets, optional journal backup and Pro Design Studio as available. Existing #next-update anchors stay valid for old links. Campaign links, consent, media and account routes are retained. The later 1.1.31 (86) pet-leader/Apple Music candidate remains internal TestFlight only and is not promoted here. This website correction does not submit any app build for review.
