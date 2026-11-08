@@ -82,3 +82,8 @@ Support and privacy explain journal-image storage versus optional cloud journal 
 ## Release availability correction - November 7, 2026
 
 The owner-requested growth audit verified App Store Connect lists 1.1.29 (84) as Ready for Distribution. The homepage, feature guide, support and privacy pages now describe its already released journal videos, invitation rewards, mayor naming, widgets, optional journal backup and Pro Design Studio as available. Existing #next-update anchors stay valid for old links. Campaign links, consent, media and account routes are retained. The later 1.1.31 (86) pet-leader/Apple Music candidate remains internal TestFlight only and is not promoted here. This website correction does not submit any app build for review.
+
+
+## Mayor learning and Pro wellness update
+
+The homepage, feature guide and setup guide describe the features submitted in version 1.1.36 (91): 24 free Mayor lessons and 72 quiz questions, layered clothing with independent colors and one headpiece, the floating Mayor cloud, three free Pro look previews, 16 Pro wellness guides with three samples, repair encouragement, playlist links and feature shortcuts. New sections explicitly state that 1.1.36 is in Apple review; current videos remain the approved existing videos. Free and Pro are labeled separately. Existing domain, download attribution, analytics consent, account links and approved video assets are preserved.

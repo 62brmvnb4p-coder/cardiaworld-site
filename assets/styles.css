@@ -415,3 +415,15 @@ h1, h2, h3 { margin: 0; font-family: 'Manrope', sans-serif; letter-spacing: -.04
   .feature-jump-nav a { font-size: .82rem; padding: .6rem .8rem; }
   .collection-callout { padding: 1.4rem; }
 }
+
+/* Mayor learning and Pro wellness release copy */
+.release-refresh { scroll-margin-top: 2rem; }
+.release-refresh .feature-mark { font-size: .73rem; letter-spacing: .08em; }
+.release-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.3rem; }
+.pro-look-card { border-color: rgba(245, 201, 104, .6); background: radial-gradient(ellipse at 100% 0, rgba(236, 181, 61, .18), transparent 70%), #0b2138; }
+.pro-look-card .feature-mark { color: #ffe3a0; }
+.button.gold { margin-top: 1.3rem; color: #302007; border: 1px solid #fff0b8; background: linear-gradient(120deg, #e9b64d 0%, #fff0bc 36%, #f1c96f 57%, #dca73c 100%); box-shadow: inset 0 1px 0 #fff7d5, 0 5px 22px rgba(235, 181, 69, .12); }
+.button.gold:hover { filter: brightness(1.07); }
+.release-footnote { margin: 1.5rem 0 0; color: var(--cream-muted); font-size: .91rem; line-height: 1.7; }
+.release-refresh .hero-actions { margin-top: 1.6rem; }
+@media (max-width: 700px) { .release-grid { grid-template-columns: 1fr; } .release-refresh .button { width: 100%; white-space: normal; } }
