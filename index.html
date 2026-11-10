@@ -103,6 +103,8 @@
     <link rel="icon" href="/assets/images/cardia-world-icon-512.png?v=app-icon-0dba94c9">
     <link rel="stylesheet" href="/assets/styles.css?v=20261107-mayor-wellness">
     <script defer src="/assets/site.js?v=20261103-features"></script>
+    <link rel="stylesheet" href="/assets/community.css?v=20261110-community">
+    <script defer src="/assets/community.js?v=20261110-community"></script>
     <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
   </head>
   <body>
@@ -117,6 +119,7 @@
       </button>
       <nav id="site-nav" class="site-nav" aria-label="Main navigation" data-nav><a href="/features/">Features</a>
         <a href="#watch">Watch</a>
+        <a href="#community">Community</a>
         <a href="#worlds">Worlds</a>
         <a href="#mayor-and-wellness">Mayor &amp; learning</a>
         <a href="#how-it-works">How it works</a>
@@ -153,6 +156,43 @@
           <div class="floating-badge badge-one"><strong>+1</strong> Build Day</div>
           <div class="floating-badge badge-two"><strong>15 min</strong> qualifies</div>
         </div>
+      </section>
+
+      <section id="community" class="community section-shell" aria-labelledby="community-title" data-community>
+        <div class="community-heading">
+          <div><span class="eyebrow">Built by movement. Shared by a community.</span><h2 id="community-title">Every world has<br>someone behind it.</h2><p>Meet the builders turning everyday cardio into places of their own. Find a familiar name, follow the rankings, and discover this week’s community spotlights.</p></div>
+          <a class="button secondary" href="https://apps.apple.com/us/app/cardia-world/id6815041207?pt=129494535&amp;ct=website&amp;mt=8">Start your world <span aria-hidden="true">→</span></a>
+        </div>
+        <dl class="community-stats" aria-label="Live shared community totals">
+          <div><dt>Builders on the board</dt><dd data-community-total="builders">—</dd></div>
+          <div><dt>Standing buildings</dt><dd data-community-total="buildings">—</dd></div>
+          <div><dt>World residents</dt><dd data-community-total="residents">—</dd></div>
+        </dl>
+        <div class="community-layout">
+          <div class="community-board">
+            <div class="community-board-heading"><div><span class="community-kicker">A WORLD OF FRIENDLY COMPETITION</span><h3 id="leaderboard-title">Live leaderboard</h3></div><span class="community-live" data-community-live>Connecting</span></div>
+            <form class="community-search" role="search" data-community-search>
+              <label class="sr-only" for="community-query">Find a builder or mayor</label>
+              <input id="community-query" name="q" type="search" placeholder="Find a builder or mayor…" maxlength="36" autocomplete="off" spellcheck="false" aria-controls="community-rows">
+              <button type="submit">Search</button>
+            </form>
+            <p class="community-board-note" id="leaderboard-note">Ranked by standing buildings. Equal totals share a rank.</p>
+            <div class="community-scroll" role="region" aria-labelledby="leaderboard-title" aria-describedby="leaderboard-note" tabindex="0" data-community-scroll>
+              <table class="community-table"><caption class="sr-only">Shared Cardia World rankings, with building and resident counts</caption><thead><tr><th scope="col">Rank</th><th scope="col">Builder</th><th scope="col">Buildings</th><th scope="col">Residents</th></tr></thead><tbody id="community-rows" data-community-rows></tbody></table>
+              <p class="community-empty" data-community-empty>Loading the community…</p>
+              <div class="community-more"><button class="community-small-button" type="button" data-community-more hidden>Show more builders</button></div>
+            </div>
+            <div class="community-board-footer"><p role="status" aria-live="polite" data-community-status>Fetching live rankings…</p><button type="button" class="community-small-button" data-community-refresh>Refresh</button></div>
+          </div>
+          <aside class="community-spotlights" aria-labelledby="spotlights-title">
+            <div class="community-spotlights-heading"><span class="community-kicker">A LITTLE RECOGNITION GOES A LONG WAY</span><h3 id="spotlights-title">Community spotlights</h3><p>Weekly honors for worlds with personality.</p></div>
+            <div class="community-awards" data-community-awards><p class="community-board-note">Loading this week’s spotlights…</p></div>
+            <p class="community-spotlight-note" data-community-week></p>
+            <a class="text-link" href="https://apps.apple.com/us/app/cardia-world/id6815041207?pt=129494535&amp;ct=website&amp;mt=8">Enter and vote in Cardia World <span aria-hidden="true">→</span></a>
+          </aside>
+        </div>
+        <p class="community-footnote">Totals include profiles sharing leaderboard status. Buildings and residents are in-game. Only shared game stats appear here.</p>
+        <noscript><p>Enable JavaScript to browse the live leaderboard and weekly spotlights. You can also find them in the Cardia World app.</p></noscript>
       </section>
 
       <section id="mayor-and-wellness" class="feature-preview release-refresh section-shell" aria-labelledby="mayor-wellness-title" data-availability="in-review">

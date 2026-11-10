@@ -18,6 +18,24 @@ Official website for **Cardia World** — “Move your body. Build your world.�
 The site deploys to GitHub Pages from `main` using `.github/workflows/pages.yml`.
 The production custom domain is `cardiaworld.com`.
 
+## Live community — November 10, 2026
+
+The homepage `/#community` reads the public, read-only `public-community` Edge
+Function. Shared game totals, a searchable scrollable building leaderboard with
+resident counts, and weekly Coziest Town / Best Night View / Rising Builder
+spotlights refresh every minute while the page is visible. Rankings load in
+25-row pages; refresh preserves loaded pages and scroll position. Search preserves
+global ranks. Equal building totals share a rank.
+
+Finished winners are labeled separately from current voting leaders and empty
+contests. No winners, testimonials, ratings, download totals or online-user counts
+are invented. The website receives shared usernames, mayor names, ranks and game
+counts only; no account IDs, Health data, workout history, saved game packets or
+private images are requested. Failure states retain the last successful rankings
+with a visible stale label and a retry control. Existing video order, approved
+media, consent, App Store attribution, account routes and app review holds stay in
+effect. This website change does not submit an app build to Apple.
+
 ## Download attribution
 
 App Store download buttons use Apple's campaign links with provider token `129494535`, generated in App Store Connect. The fallback campaign is `website`, including when JavaScript is disabled. Canonical URLs and structured data retain the ordinary App Store URL.
