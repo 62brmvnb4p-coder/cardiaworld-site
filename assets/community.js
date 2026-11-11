@@ -60,7 +60,7 @@
   }
 
   async function captureSnapshot(world) {
-    const {snapshotHtml} = await import('/assets/community-world-renderer.mjs?v=20261110-worlds');
+    const {snapshotHtml} = await import('/assets/community-world-renderer.mjs?v=20261110-stills');
     return new Promise((resolve, reject) => {
       const frame = node('iframe', 'community-render-frame');
       frame.setAttribute('sandbox', 'allow-scripts');
@@ -84,7 +84,10 @@
       const timeout = setTimeout(() => finish(null, Error('World snapshot timed out')), 12000);
       const bridge = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:"><script>
         window.ReactNativeWebView = { postMessage(message) {
-          if (message === 'ready') window.cardiaRequestSnapshot(1);
+          if (message === 'ready') {
+            window.cardiaStillRequested = true;
+            window.cardiaRequestSnapshot(1);
+          }
           else window.parent.postMessage(message, ${JSON.stringify(location.origin)});
         }};
       </script>`;

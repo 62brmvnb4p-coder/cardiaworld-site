@@ -47,7 +47,7 @@
   border-radius: 10px; background: #102b43; color: #bdd0dd; font-size: .69rem; text-align: center;
 }
 .community-world img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.45); transform-origin: 50% 58%; }
-.community-render-frame { position: absolute; left: -10000px; top: 0; width: 480px; height: 300px; border: 0; pointer-events: none; }
+.community-render-frame { position: absolute; left: -10000px; top: 0; width: 360px; height: 225px; border: 0; pointer-events: none; }
 .community-empty { padding: 1rem 1.5rem; color: var(--cream-muted); font-size: .85rem; }
 .community-more { text-align: center; }
 .community-more button { margin: .75rem; }

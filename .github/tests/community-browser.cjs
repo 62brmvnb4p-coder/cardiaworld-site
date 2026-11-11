@@ -13,7 +13,7 @@ const rows = Array.from({length: 25}, (_, i) => ({
 async function check() {
   const browser = await chromium.launch({
     executablePath: process.env.CHROME_PATH,
-    args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
+    args: ['--disable-webgl'],
   });
   try {
     const page = await browser.newPage({...devices['iPhone 14'], deviceScaleFactor: 1});
@@ -28,7 +28,7 @@ async function check() {
     await page.goto(process.env.TEST_SITE_URL ?? 'http://127.0.0.1:4193/#community', {waitUntil: 'domcontentloaded'});
     const scroller = page.locator('[data-community-scroll]');
     await scroller.scrollIntoViewIfNeeded();
-    await page.waitForFunction(() => document.querySelector('.community-world img')?.naturalWidth === 360, {timeout: 30000});
+    await page.waitForFunction(() => document.querySelector('.community-world img')?.naturalWidth === 360, undefined, {timeout: 30000});
     assert.equal(await page.locator('#community-rows tr').nth(1).locator('.community-world').count(), 0);
     const before = await page.locator('.community-world img').count();
     await scroller.evaluate(node => { node.scrollTop = 640; });

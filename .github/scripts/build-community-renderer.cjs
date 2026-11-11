@@ -33,13 +33,53 @@ const imports = source.statements.flatMap(node => {
 });
 if (deps.size) throw Error('App renderer imports changed: ' + [...deps].join(', '));
 
+const raster = fs.readFileSync(path.join(appRoot, 'backend/server/world-email-raster.cjs'), 'utf8')
+  .replace(/module\.exports\s*=\s*\{rasterScene\};\s*$/, '');
+const softwareRenderer = `<script>
+  (function() {
+    ${raster}
+    const T = window.THREE;
+    const canvas = {createCanvas(width, height) {
+      const element = document.createElement('canvas');
+      element.width = width;
+      element.height = height;
+      return element;
+    }};
+    window.requestAnimationFrame = () => 1;
+    T.PMREMGenerator = class {
+      fromEquirectangular() { return {texture: new T.Texture()}; }
+      dispose() {}
+    };
+    T.WebGLRenderer = class {
+      constructor() {
+        this.domElement = canvas.createCanvas(360, 225);
+        this.shadowMap = {};
+        this.capabilities = {getMaxAnisotropy: () => 4};
+      }
+      setPixelRatio() {}
+      getPixelRatio() { return 1; }
+      setSize(width, height) {
+        this.domElement.width = width;
+        this.domElement.height = height;
+      }
+      getSize(target) { return target.set(this.domElement.width, this.domElement.height); }
+      render(scene, camera) {
+        if (!window.cardiaStillRequested) return;
+        const width = this.domElement.width, height = this.domElement.height;
+        const image = rasterScene(T, scene, camera, canvas, width, height).canvas;
+        this.domElement.getContext('2d').drawImage(image, 0, 0);
+      }
+    };
+  })();
+</script>`;
+
 buildSync({
   stdin: {
-    contents: imports.join('\n') + '\n' + createWorld.getText(source) + `
+    contents: imports.join('\n') + '\n' + createWorld.getText(source) + '\nconst softwareRenderer = ' + JSON.stringify(softwareRenderer) + `
       export function snapshotHtml(world) {
         const stage = worldConstructionStage(world.days, world.points);
         const damage = deteriorationAppearance(world.health);
-        return createWorldHtml(
+        const html = createWorldHtml(
           world.id, stage, world.points, world.health, world.population, false, world.days,
           damage.environmentCap, damage.happinessCap, [], [], world.customization, damage.weather,
           false, 'world', world.damage, 0,
@@ -47,6 +87,7 @@ buildSync({
           false, undefined, { level: world.level, unlockedLevel: world.level }, undefined,
           world.namingDays, undefined, true, 'noon', true, world.life
         );
+        return html.replace('</script><script>', '</script>' + softwareRenderer + '<script>');
       }
     `,
     sourcefile: filename,
