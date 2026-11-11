@@ -27,7 +27,7 @@
 .community button:disabled { cursor: wait; opacity: .55; }
 .community :is(button, input, a, [tabindex]):focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 .community-board-note { margin: .7rem 1.5rem; color: #b6c6d2; font-size: .75rem; }
-.community-scroll { max-height: 390px; overflow-y: auto; scrollbar-color: #3a657d #0a233b; scrollbar-width: thin; }
+.community-scroll { max-height: min(54vh, 480px); overflow-y: auto; scrollbar-color: #3a657d #0a233b; scrollbar-width: thin; }
 .community-table { border-collapse: separate; border-spacing: 0; width: 100%; table-layout: fixed; font-size: .87rem; }
 .community-table th { position: sticky; top: 0; z-index: 1; padding: .65rem .5rem; background: #102d48; color: #c4d5df; text-align: left; font-size: .65rem; font-weight: 500; letter-spacing: .01em; }
 .community-table th:first-child { width: 58px; padding-left: 1.5rem; }
@@ -41,6 +41,13 @@
 .community-table tr:hover td { background: rgba(255,255,255,.025); }
 .community-builder { display: block; font-weight: 600; overflow-wrap: anywhere; line-height: 1.4; }
 .community-mayor { display: block; font-size: .68rem; color: #afc2cf; overflow-wrap: anywhere; }
+.community-world {
+  display: grid; place-items: center; width: min(100%, 182px); aspect-ratio: 8 / 5;
+  margin-top: .5rem; overflow: hidden; border: 1px solid rgba(160,215,230,.25);
+  border-radius: 10px; background: #102b43; color: #bdd0dd; font-size: .69rem; text-align: center;
+}
+.community-world img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.community-render-frame { position: absolute; left: -10000px; top: 0; width: 480px; height: 300px; border: 0; pointer-events: none; }
 .community-empty { padding: 1rem 1.5rem; color: var(--cream-muted); font-size: .85rem; }
 .community-more { text-align: center; }
 .community-more button { margin: .75rem; }
@@ -91,6 +98,7 @@
   .community-table td:first-child { padding-left: 1rem; }
   .community-table td:last-child { padding-right: 1rem; }
   .community-table { font-size: .79rem; }
+  .community-world { border-radius: 8px; }
   .community-board-footer { padding-inline: 1rem; }
   .community-awards { grid-template-columns: 1fr; }
   .community-award { padding: 1rem 1rem 1rem 4.25rem; }

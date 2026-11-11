@@ -18,7 +18,21 @@
   const number = new Intl.NumberFormat();
   let revision = 0, controller, debounce, page = 0, hasMore = false, busy = false;
   let query = '', displayed = [], lastSuccess = 0;
+  const snapshotCache = new Map();
+  const pendingSnapshots = new Map();
+  const snapshotWorlds = new WeakMap();
+  let capturing = false;
+  const observer = typeof IntersectionObserver === 'function' && new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) pendingSnapshots.set(entry.target, snapshotWorlds.get(entry.target));
+      else pendingSnapshots.delete(entry.target);
+    }
+    void renderSnapshots();
+  }, {rootMargin: '90px 0px'});
   const count = value => Number.isSafeInteger(value) && value >= 0;
+  const sharedWorld = world => world && ['heritage', 'grove', 'future', 'neo', 'solar', 'zen'].includes(world.id) &&
+    [world.days, world.points, world.namingDays, world.population, world.damage, world.level].every(count) &&
+    world.days <= 1440 && world.level <= 7 && Number.isFinite(world.health) && world.health >= 0 && world.health <= 100;
   const validRow = row => row && typeof row.username === 'string' && row.username.length <= 100 &&
     (row.mayorName === null || typeof row.mayorName === 'string') &&
     count(row.rank) && count(row.buildings) && count(row.residents);
@@ -36,8 +50,76 @@
     return element;
   }
 
-  function drawRows(data) {
+  function putSnapshot(tile, source, username) {
+    const image = node('img');
+    image.alt = '3D world snapshot for @' + username;
+    image.width = 360;
+    image.height = 225;
+    image.src = source;
+    tile.replaceChildren(image);
+  }
+
+  async function captureSnapshot(world) {
+    const {snapshotHtml} = await import('/assets/community-world-renderer.mjs?v=20261110-worlds');
+    return new Promise((resolve, reject) => {
+      const frame = node('iframe', 'community-render-frame');
+      frame.setAttribute('sandbox', 'allow-scripts');
+      frame.setAttribute('aria-hidden', 'true');
+      frame.tabIndex = -1;
+      const finish = (image, error) => {
+        clearTimeout(timeout);
+        window.removeEventListener('message', receive);
+        frame.remove();
+        if (error) reject(error);
+        else resolve(image);
+      };
+      const receive = event => {
+        if (event.source !== frame.contentWindow || typeof event.data !== 'string') return;
+        if (/^snapshot:1:data:image\/jpeg;base64,[A-Za-z0-9+/=]+$/.test(event.data) && event.data.length < 180020) {
+          finish(event.data.slice('snapshot:1:'.length));
+        } else if (/^(snapshot-error:|error:)/.test(event.data)) {
+          finish(null, Error('World snapshot unavailable'));
+        }
+      };
+      const timeout = setTimeout(() => finish(null, Error('World snapshot timed out')), 12000);
+      const bridge = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:"><script>
+        window.ReactNativeWebView = { postMessage(message) {
+          if (message === 'ready') window.cardiaRequestSnapshot(1);
+          else window.parent.postMessage(message, ${JSON.stringify(location.origin)});
+        }};
+      </script>`;
+      window.addEventListener('message', receive);
+      frame.srcdoc = snapshotHtml(world).replace('<head>', '<head>' + bridge);
+      document.body.append(frame);
+    });
+  }
+
+  async function renderSnapshots() {
+    if (capturing) return;
+    capturing = true;
+    while (pendingSnapshots.size) {
+      const [tile, details] = pendingSnapshots.entries().next().value;
+      pendingSnapshots.delete(tile);
+      if (!tile.isConnected || !details) continue;
+      observer.unobserve(tile);
+      const {world, username, key} = details;
+      try {
+        const image = snapshotCache.get(key) ?? await captureSnapshot(world);
+        if (snapshotCache.size >= 48) snapshotCache.delete(snapshotCache.keys().next().value);
+        snapshotCache.set(key, image);
+        if (tile.isConnected) putSnapshot(tile, image, username);
+      } catch {
+        if (tile.isConnected) tile.textContent = 'Preview unavailable';
+      }
+    }
+    capturing = false;
+  }
+
+  function drawRows(data, showSnapshots = true) {
+    observer?.disconnect?.();
+    pendingSnapshots.clear();
     const fragment = document.createDocumentFragment();
+    const previewTiles = [];
     for (const item of data) {
       const row = node('tr');
       if (item.rank <= 3) row.dataset.podium = '';
@@ -45,10 +127,22 @@
       const builder = node('td');
       builder.append(node('span', 'community-builder', '@' + item.username));
       if (item.mayorName) builder.append(node('span', 'community-mayor', 'Mayor ' + item.mayorName));
+      if (observer && showSnapshots && sharedWorld(item.preview)) {
+        const tile = node('div', 'community-world');
+        const key = JSON.stringify(item.preview);
+        const image = snapshotCache.get(key);
+        if (image) putSnapshot(tile, image, item.username);
+        else {
+          snapshotWorlds.set(tile, {world: item.preview, username: item.username, key});
+          previewTiles.push(tile);
+        }
+        builder.append(tile);
+      }
       row.append(builder, node('td', '', number.format(item.buildings)), node('td', '', number.format(item.residents)));
       fragment.append(row);
     }
     rows.replaceChildren(fragment);
+    previewTiles.forEach(tile => observer.observe(tile));
     empty.hidden = data.length > 0;
     empty.textContent = query ? 'No builders found. Try another name.' : 'The first worlds are getting started. Yours could be next.';
   }
@@ -111,6 +205,7 @@
   async function fetchPage(index, requestedQuery, signal) {
     const url = new URL(endpoint);
     url.searchParams.set('page', String(index));
+    url.searchParams.set('worlds', '1');
     if (requestedQuery) url.searchParams.set('q', requestedQuery);
     const response = await fetch(url.href, {method: 'GET', mode: 'cors', credentials: 'omit', cache: 'no-store', signal});
     if (!response.ok) throw Error('Community unavailable');
@@ -160,6 +255,10 @@
       live.textContent = lastSuccess ? 'Needs refresh' : 'Unavailable'; live.dataset.state = 'stale';
       if (reset) { displayed = []; drawRows([]); more.hidden = true; empty.textContent = 'Search could not load. Please try again.'; }
       else if (!lastSuccess) { empty.textContent = 'Live rankings could not load. Tap Refresh to try again.'; }
+      else {
+        drawRows(displayed, false);
+        scroll.scrollTop = oldScroll;
+      }
       status.textContent = lastSuccess && !reset ? 'Could not refresh. Showing the last loaded rankings.' : 'Could not load live rankings. Please try again.';
       if (!lastSuccess) {
         awards.replaceChildren(node('p', 'community-board-note', 'Spotlights could not load. Tap Refresh to try again.'));

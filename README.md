@@ -30,8 +30,10 @@ global ranks. Equal building totals share a rank.
 Finished winners are labeled separately from current voting leaders and empty
 contests. No winners, testimonials, ratings, download totals or online-user counts
 are invented. The website receives shared usernames, mayor names, ranks and game
-counts only; no account IDs, Health data, workout history, saved game packets or
-private images are requested. Failure states retain the last successful rankings
+counts, plus scene data for worlds whose preview is shared. Still images are
+rendered from the app's 3D scene when a row approaches the viewport. The feed
+excludes account IDs, Health data, workout history, saved game packets and
+private images. Failure states retain the last successful rankings
 with a visible stale label and a retry control. Existing video order, approved
 media, consent, App Store attribution, account routes and app review holds stay in
 effect. This website change does not submit an app build to Apple.
