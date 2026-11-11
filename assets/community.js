@@ -60,7 +60,7 @@
   }
 
   async function captureSnapshot(world) {
-    const {snapshotHtml} = await import('/assets/community-world-renderer.mjs?v=20261110-stills');
+    const {snapshotHtml} = await import('/assets/community-world-renderer.mjs?v=20261110-framed');
     return new Promise((resolve, reject) => {
       const frame = node('iframe', 'community-render-frame');
       frame.setAttribute('sandbox', 'allow-scripts');

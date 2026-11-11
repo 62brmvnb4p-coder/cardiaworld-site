@@ -3767,6 +3767,34 @@ function rasterScene(T,scene,camera,canvasModule,width,height,selected=null){
       fromEquirectangular() { return {texture: new T.Texture()}; }
       dispose() {}
     };
+    function frameWorld(scene, camera, aspect) {
+      const planet = scene.getObjectByName('planet-world');
+      const root = planet?.visible ? planet : scene.getObjectByName('local-world');
+      if (!root) return camera;
+      scene.updateMatrixWorld(true);
+      const bounds = new T.Box3().setFromObject(root);
+      if (bounds.isEmpty()) return camera;
+      const center = bounds.getCenter(new T.Vector3());
+      const distance = Math.max(8, bounds.getSize(new T.Vector3()).length() + 3);
+      const view = new T.OrthographicCamera(-1, 1, 1, -1, .1, distance * 3);
+      view.position.copy(center).addScaledVector(camera.getWorldDirection(new T.Vector3()), -distance);
+      view.lookAt(center);
+      view.updateMatrixWorld(true);
+      const screen = new T.Box3();
+      for (const x of [bounds.min.x, bounds.max.x])
+        for (const y of [bounds.min.y, bounds.max.y])
+          for (const z of [bounds.min.z, bounds.max.z])
+            screen.expandByPoint(new T.Vector3(x, y, z).applyMatrix4(view.matrixWorldInverse));
+      const mid = screen.getCenter(new T.Vector3());
+      const size = screen.getSize(new T.Vector3());
+      const halfHeight = Math.max(size.y, size.x / aspect) * .56;
+      view.left = mid.x - halfHeight * aspect;
+      view.right = mid.x + halfHeight * aspect;
+      view.top = mid.y + halfHeight;
+      view.bottom = mid.y - halfHeight;
+      view.updateProjectionMatrix();
+      return view;
+    }
     T.WebGLRenderer = class {
       constructor() {
         this.domElement = canvas.createCanvas(360, 225);
@@ -3783,7 +3811,10 @@ function rasterScene(T,scene,camera,canvasModule,width,height,selected=null){
       render(scene, camera) {
         if (!window.cardiaStillRequested) return;
         const width = this.domElement.width, height = this.domElement.height;
-        const image = rasterScene(T, scene, camera, canvas, width, height).canvas;
+        const view = frameWorld(scene, camera, width / height);
+        // Camera-only shader effects belong to the live scene.
+        scene.remove(camera);
+        const image = rasterScene(T, scene, view, canvas, width, height).canvas;
         this.domElement.getContext('2d').drawImage(image, 0, 0);
       }
     };
