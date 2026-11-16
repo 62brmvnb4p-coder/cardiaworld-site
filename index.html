@@ -105,6 +105,8 @@
     <script defer src="/assets/site.js?v=20261103-features"></script>
     <link rel="stylesheet" href="/assets/community.css?v=20261110-framed">
     <script defer src="/assets/community.js?v=20261110-framed"></script>
+    <link rel="stylesheet" href="/assets/colossus.css">
+    <script defer src="/assets/colossus-gallery.js"></script>
     <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
   </head>
   <body>
@@ -120,6 +122,7 @@
       <nav id="site-nav" class="site-nav" aria-label="Main navigation" data-nav><a href="/features/">Features</a>
         <a href="#watch">Watch</a>
         <a href="#community">Community</a>
+        <a href="#colossus">Colossus</a>
         <a href="#worlds">Worlds</a>
         <a href="#mayor-and-wellness">Mayor &amp; learning</a>
         <a href="#how-it-works">How it works</a>
@@ -193,6 +196,55 @@
         </div>
         <p class="community-footnote">Buildings and residents are in-game. World snapshots appear for builders who share their world preview.</p>
         <noscript><p>Enable JavaScript to browse the live leaderboard and weekly spotlights. You can also find them in the Cardia World app.</p></noscript>
+      </section>
+
+      <section id="colossus" class="colossus section-shell" aria-labelledby="colossus-title">
+        <header class="colossus-heading">
+          <h2 id="colossus-title">Community Colossus</h2>
+          <p>Cardia World players contribute cardio days to build a shared island. Preview <strong>The Sixfold Crown</strong>, where all six world styles come together.</p>
+        </header>
+
+        <div class="colossus-gallery" data-colossus-gallery>
+          <div class="colossus-stage-tabs" role="tablist" aria-label="Colossus construction stage previews" hidden>
+            <button type="button" role="tab" id="colossus-tab-foundation" aria-controls="colossus-foundation">
+              <img src="/assets/images/colossus/foundation-thumb.webp" width="256" height="160" alt="" loading="lazy">Foundation
+            </button>
+            <button type="button" role="tab" id="colossus-tab-pavilions" aria-controls="colossus-pavilions">
+              <img src="/assets/images/colossus/pavilions-thumb.webp" width="256" height="160" alt="" loading="lazy">Pavilions
+            </button>
+            <button type="button" role="tab" id="colossus-tab-arches" aria-controls="colossus-arches">
+              <img src="/assets/images/colossus/arches-thumb.webp" width="256" height="160" alt="" loading="lazy">Arches
+            </button>
+            <button type="button" role="tab" id="colossus-tab-crown" aria-controls="colossus-crown">
+              <img src="/assets/images/colossus/crown-thumb.webp" width="256" height="160" alt="" loading="lazy">Crown
+            </button>
+            <button type="button" role="tab" id="colossus-tab-completed" aria-controls="colossus-completed">
+              <img src="/assets/images/colossus/completed-thumb.webp" width="256" height="160" alt="" loading="lazy">Complete
+            </button>
+          </div>
+          <div class="colossus-stages">
+            <figure id="colossus-foundation" class="colossus-stage">
+              <img src="/assets/images/colossus/foundation.webp" width="1280" height="800" alt="A crane and construction crew work around six foundation pads on the island." loading="lazy" decoding="async">
+              <figcaption><strong>Foundation</strong> The crew marks out six wings around the central pool.</figcaption>
+            </figure>
+            <figure id="colossus-pavilions" class="colossus-stage">
+              <img src="/assets/images/colossus/pavilions.webp" width="1280" height="800" alt="Low pavilion frames and columns rise from the pads alongside the construction crane." loading="lazy" decoding="async">
+              <figcaption><strong>Pavilions</strong> The first frames and support towers take shape.</figcaption>
+            </figure>
+            <figure id="colossus-arches" class="colossus-stage">
+              <img src="/assets/images/colossus/arches.webp" width="1280" height="800" alt="Sweeping ivory arches connect the support towers to a tiered structure at the island’s center." loading="lazy" decoding="async">
+              <figcaption><strong>Arches</strong> Curved ribs connect the outer towers to the centerpiece.</figcaption>
+            </figure>
+            <figure id="colossus-crown" class="colossus-stage">
+              <img src="/assets/images/colossus/crown.webp" width="1280" height="800" alt="A copper ring rises above the arches as roofs appear on the surrounding pavilions." loading="lazy" decoding="async">
+              <figcaption><strong>Crown</strong> A copper ring joins the arches as more of the pavilions gain roofs.</figcaption>
+            </figure>
+            <figure id="colossus-completed" class="colossus-stage">
+              <img src="/assets/images/colossus/completed.webp" width="1280" height="800" alt="The finished design has six roofed wings and a turquoise beacon above the crown." loading="lazy" decoding="async">
+              <figcaption><strong>Complete</strong> A turquoise beacon lights up above all six wings in this preview of the finished design.</figcaption>
+            </figure>
+          </div>
+        </div>
       </section>
 
       <section id="mayor-and-wellness" class="feature-preview release-refresh section-shell" aria-labelledby="mayor-wellness-title" data-availability="in-review">

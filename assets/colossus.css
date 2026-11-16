@@ -1,0 +1,137 @@
+.colossus {
+  padding-block: clamp(3rem, 7vw, 5rem);
+  scroll-margin-top: 2rem;
+}
+
+.colossus-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: end;
+  gap: 1rem 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.colossus h2 {
+  font-size: clamp(2.15rem, 4.5vw, 3.55rem);
+  line-height: 1.1;
+}
+
+.colossus-heading p {
+  max-width: 480px;
+  margin: 0;
+  color: var(--cream-muted);
+}
+
+.colossus-heading strong { color: var(--cream); white-space: nowrap; }
+
+.colossus-gallery[data-enhanced] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(13rem, 23vw, 17rem);
+  grid-template-areas: "stages tabs";
+  align-items: start;
+  gap: clamp(.8rem, 2vw, 1.5rem);
+  padding: clamp(.65rem, 2vw, 1.2rem);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: linear-gradient(150deg, var(--navy-800), var(--navy-900) 75%);
+}
+
+.colossus-stage-tabs[hidden], .colossus-stage[hidden] { display: none; }
+
+.colossus-stage-tabs {
+  grid-area: tabs;
+  display: grid;
+  align-self: stretch;
+  grid-auto-rows: minmax(0, 1fr);
+  gap: .5rem;
+}
+
+.colossus-stage-tabs button {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  min-height: 44px;
+  padding: .45rem .64rem .45rem .45rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--navy-900);
+  color: var(--cream-muted);
+  font: 700 .94rem/1.2 'DM Sans', sans-serif;
+  text-align: left;
+  cursor: pointer;
+}
+
+.colossus-stage-tabs button:hover { background: var(--navy-700); }
+
+.colossus-stage-tabs button[aria-selected="true"] {
+  border-color: var(--gold);
+  color: var(--cream);
+  background: var(--navy-700);
+}
+
+.colossus-stage-tabs img {
+  width: min(44%, 96px);
+  height: auto;
+  border-radius: 6px;
+}
+
+.colossus :is([role="tab"], [role="tabpanel"]):focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.colossus-stages {
+  grid-area: stages;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.colossus-gallery[data-enhanced] .colossus-stages { display: block; }
+
+.colossus-stage {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--navy-950);
+}
+
+.colossus-stage > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  background: var(--navy-800);
+}
+
+.colossus-stage figcaption {
+  padding: .85rem 1rem 1rem;
+  color: var(--cream-muted);
+  font-size: .92rem;
+  line-height: 1.6;
+}
+
+.colossus-stage figcaption strong {
+  display: block;
+  color: var(--cream);
+  font: 800 1.13rem/1.3 'Manrope', sans-serif;
+  margin-bottom: .2rem;
+}
+
+@media (max-width: 800px) {
+  .colossus-heading { grid-template-columns: 1fr; gap: .75rem; }
+  .colossus-gallery[data-enhanced] {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "tabs" "stages";
+  }
+  .colossus-stage-tabs { grid-template-columns: repeat(5, minmax(0, 1fr)); grid-auto-rows: auto; }
+  .colossus-stage-tabs button { flex-direction: column; gap: .35rem; padding: .5rem .25rem; text-align: center; }
+  .colossus-stage-tabs img { width: 100%; }
+}
+
+@media (max-width: 560px) {
+  .colossus-stage-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem; }
+  .colossus-stage-tabs button { justify-content: center; font-size: .86rem; }
+  .colossus-stage-tabs img { display: none; }
+  .colossus-stages { grid-template-columns: 1fr; }
+}
