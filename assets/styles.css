@@ -122,9 +122,6 @@ h1, h2, h3 { margin: 0; font-family: 'Manrope', sans-serif; letter-spacing: -.04
 .button.secondary { color: var(--cream); border-color: var(--line); background: rgba(255,255,255,.05); }
 .header-download { flex: none; min-height: 44px; padding: .45rem .9rem; font-size: .9rem; white-space: nowrap; }
 .header-download:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
-@media (min-width: 901px) {
-  .home-header .site-nav { flex-wrap: wrap; justify-content: center; gap: .25rem clamp(.65rem, 1.05vw, 1.1rem); }
-}
 .trust-row { display: flex; flex-wrap: wrap; gap: .65rem 1.2rem; color: #b9cbd5; font-size: .78rem; }
 .trust-row span::before { content: '✓'; margin-right: .38rem; color: var(--green); font-weight: 800; }
 
