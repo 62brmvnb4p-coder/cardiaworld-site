@@ -141,6 +141,20 @@ h1, h2, h3 { margin: 0; font-family: 'Manrope', sans-serif; letter-spacing: -.04
 .video-preview { width: 100%; max-width: 380px; margin: 0; justify-self: center; }
 .video-preview video { display: block; width: 100%; height: auto; aspect-ratio: 512 / 910; border: 1px solid var(--line); border-radius: 24px; background: var(--navy-900); box-shadow: var(--shadow); }
 .video-preview figcaption { margin-top: .9rem; color: var(--cream-muted); font-size: .85rem; text-align: center; }
+.hero.hero-video-first {
+  min-height: 0;
+  padding-block: clamp(112px, 10vw, 150px) clamp(46px, 7vw, 88px);
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: clamp(1.75rem, 5vw, 5rem);
+}
+.hero-video-first .hero-demo { align-self: start; width: min(100%, 356px, 48svh); }
+.hero-video-first .hero-demo figcaption { margin-top: .65rem; }
+@media (max-width: 900px) {
+  .hero.hero-video-first {
+    padding-block-start: 92px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 
 .progression { padding: 110px 0 40px; }
 .progression-frame { padding: .5rem; border: 1px solid var(--line); border-radius: 30px; background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); box-shadow: var(--shadow); overflow: hidden; }
