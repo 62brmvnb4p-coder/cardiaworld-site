@@ -5,10 +5,12 @@ const nav = document.querySelector('[data-nav]');
 // Only these public channel labels are forwarded; no cookies or visitor IDs are used.
 (() => {
   const params = new URLSearchParams(window.location.search);
-  const source = (params.get('from') || params.get('utm_source') || '').toLowerCase();
+  const hasRedditAdClick = Boolean(params.get('rdt_cid')?.trim());
+  const source = (params.get('from') || params.get('utm_source') || (hasRedditAdClick ? 'reddit' : '')).toLowerCase();
   const medium = (params.get('utm_medium') || '').toLowerCase();
   const channels = new Set(['tiktok', 'facebook', 'instagram', 'reddit']);
-  const paid = new Set(['paid', 'paid_social', 'cpc', 'ppc', 'ads']).has(medium);
+  const paid = new Set(['paid', 'paid_social', 'cpc', 'ppc', 'ads']).has(medium)
+    || (source === 'reddit' && hasRedditAdClick);
   const campaign = channels.has(source) ? `${source}_${paid ? 'paid' : 'organic'}` : 'website';
 
   document.querySelectorAll('a[href*="apps.apple.com"]').forEach((link) => {
