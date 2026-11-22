@@ -6,18 +6,23 @@ const nav = document.querySelector('[data-nav]');
 (() => {
   const params = new URLSearchParams(window.location.search);
   const hasRedditAdClick = Boolean(params.get('rdt_cid')?.trim());
-  const source = (params.get('from') || params.get('utm_source') || (hasRedditAdClick ? 'reddit' : '')).toLowerCase();
+  const hasTikTokAdClick = Boolean(params.get('ttclid')?.trim());
+  const inferredSource = hasTikTokAdClick ? 'tiktok' : (hasRedditAdClick ? 'reddit' : '');
+  const source = (params.get('from') || params.get('utm_source') || inferredSource).toLowerCase();
   const medium = (params.get('utm_medium') || '').toLowerCase();
   const channels = new Set(['tiktok', 'facebook', 'instagram', 'reddit']);
   const paid = new Set(['paid', 'paid_social', 'cpc', 'ppc', 'ads']).has(medium)
-    || (source === 'reddit' && hasRedditAdClick);
+    || (source === 'reddit' && hasRedditAdClick)
+    || (source === 'tiktok' && hasTikTokAdClick);
   const campaign = channels.has(source) ? `${source}_${paid ? 'paid' : 'organic'}` : 'website';
 
   document.querySelectorAll('a[href*="apps.apple.com"]').forEach((link) => {
     const destination = new URL(link.href, window.location.href);
     if (destination.hostname !== 'apps.apple.com' || !destination.pathname.endsWith('/id6815041207')) return;
     destination.searchParams.set('pt', '129494535');
-    destination.searchParams.set('ct', campaign);
+    const storeCampaign = campaign === 'website' && link.dataset.storeEntry === 'pro-preview'
+      ? 'website_pro_preview' : campaign;
+    destination.searchParams.set('ct', storeCampaign);
     destination.searchParams.set('mt', '8');
     link.href = destination.href;
   });
