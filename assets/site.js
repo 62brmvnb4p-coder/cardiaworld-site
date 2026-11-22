@@ -20,7 +20,7 @@ const nav = document.querySelector('[data-nav]');
     const destination = new URL(link.href, window.location.href);
     if (destination.hostname !== 'apps.apple.com' || !destination.pathname.endsWith('/id6815041207')) return;
     destination.searchParams.set('pt', '129494535');
-    const storeCampaign = campaign === 'website' && link.dataset.storeEntry === 'pro-preview'
+    const storeCampaign = campaign === 'website' && link.dataset?.storeEntry === 'pro-preview'
       ? 'website_pro_preview' : campaign;
     destination.searchParams.set('ct', storeCampaign);
     destination.searchParams.set('mt', '8');
