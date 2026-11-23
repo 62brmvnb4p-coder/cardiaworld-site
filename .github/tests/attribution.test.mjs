@@ -13,13 +13,15 @@ function visit(search) {
     { href: 'https://example.com/' },
     { href: 'https://cardiaworld.com/build-a-cardio-habit/' },
     { href: 'https://cardiaworld.com/features/' },
+    { href: 'https://apps.apple.com/us/app/cardia-world/id6815041207', dataset: { storeEntry: 'pro-preview' } },
+    { href: 'https://apps.apple.com/us/app/cardia-world/id6815041207', dataset: { storeEntry: 'pro-host' } },
   ].map(link => ({ ...link, getAttribute: () => link.href }));
   const document = {
     head: { appendChild() {} },
     createElement: tag => ({ tagName: tag }),
     querySelector: () => null,
     querySelectorAll: selector => selector === 'a[href*="apps.apple.com"]'
-      ? [links[0], links[2]] : selector === 'a[href]' ? links : [],
+      ? links.filter(link => new URL(link.href).hostname === 'apps.apple.com') : selector === 'a[href]' ? links : [],
   };
   vm.runInNewContext(code, {
     document, URL, URLSearchParams,
@@ -49,4 +51,23 @@ test('Reddit organic, existing TikTok, and unknown-source downloads remain disti
   assert.equal(visit('?from=reddit')[0].searchParams.get('ct'), 'reddit_organic');
   assert.equal(visit('?utm_source=tiktok&utm_medium=cpc')[0].searchParams.get('ct'), 'tiktok_paid');
   assert.equal(visit('?utm_source=unknown')[0].searchParams.get('ct'), 'website');
+});
+
+test('Pro preview and Battle buttons preserve source and intent without sending visitor identifiers', () => {
+  for (const [query, campaign] of [
+    ['', 'website'],
+    ['?ttclid=private', 'tiktok_paid'],
+    ['?utm_source=facebook&utm_medium=cpc', 'facebook_paid'],
+    ['?utm_source=instagram&utm_medium=paid_social', 'instagram_paid'],
+    ['?rdt_cid=private', 'reddit_paid'],
+    ['?from=reddit', 'reddit_organic'],
+  ]) {
+    const links = visit(query);
+    assert.equal(links[0].searchParams.get('ct'), campaign);
+    for (const [index, intent] of [[6, 'pro_preview'], [7, 'pro_host']]) {
+      assert.deepEqual(Object.fromEntries(links[index].searchParams), {
+        pt: '129494535', ct: `${campaign}_${intent}`, mt: '8',
+      });
+    }
+  }
 });

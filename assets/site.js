@@ -20,9 +20,9 @@ const nav = document.querySelector('[data-nav]');
     const destination = new URL(link.href, window.location.href);
     if (destination.hostname !== 'apps.apple.com' || !destination.pathname.endsWith('/id6815041207')) return;
     destination.searchParams.set('pt', '129494535');
-    const storeCampaign = campaign === 'website' && link.dataset?.storeEntry === 'pro-preview'
-      ? 'website_pro_preview' : campaign;
-    destination.searchParams.set('ct', storeCampaign);
+    const entry = link.dataset?.storeEntry;
+    const suffix = { 'pro-preview': '_pro_preview', 'pro-host': '_pro_host' }[entry] || '';
+    destination.searchParams.set('ct', campaign + suffix);
     destination.searchParams.set('mt', '8');
     link.href = destination.href;
   });
