@@ -10,7 +10,8 @@
   const lifetime = 180 * 24 * 60 * 60 * 1000;
   const browserOptOut = navigator.globalPrivacyControl === true || navigator.doNotTrack === '1';
   const channels = new Set(['tiktok', 'facebook', 'instagram', 'reddit']);
-  const source = (location.searchParams.get('from') || location.searchParams.get('utm_source') || '').toLowerCase();
+  const label = (location.searchParams.get('from') || location.searchParams.get('utm_source') || '').trim().toLowerCase();
+  const source = label === 'ig' ? 'instagram' : label === 'fb' ? 'facebook' : label;
   const paid = new Set(['paid', 'paid_social', 'cpc', 'ppc', 'ads']).has((location.searchParams.get('utm_medium') || '').toLowerCase());
   const campaign = channels.has(source) ? `${source}_${paid ? 'paid' : 'organic'}` : 'website';
   const page = {page_location: location.origin + location.pathname, page_title: document.title, page_referrer: ''};
@@ -112,6 +113,8 @@
     let destination;
     try { destination = new URL(link.href, location.href); } catch { return; }
     if (destination.protocol !== 'https:' || destination.hostname !== 'apps.apple.com' || !destination.pathname.endsWith('/id6815041207')) return;
-    gtag('event', 'app_store_click', {...page, send_to: measurementId, link_url: 'https://apps.apple.com/us/app/cardia-world/id6815041207', website_campaign: campaign});
+    const token = destination.searchParams.get('ct') || '';
+    const knownToken = /^(?:website|(?:tiktok|facebook|instagram|reddit)_(?:paid|organic))(?:_pro_(?:preview|host))?$/.test(token);
+    gtag('event', 'app_store_click', {...page, send_to: measurementId, link_url: 'https://apps.apple.com/us/app/cardia-world/id6815041207', website_campaign: knownToken ? token : campaign});
   });
 })();

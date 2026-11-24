@@ -8,7 +8,8 @@ const nav = document.querySelector('[data-nav]');
   const hasRedditAdClick = Boolean(params.get('rdt_cid')?.trim());
   const hasTikTokAdClick = Boolean(params.get('ttclid')?.trim());
   const inferredSource = hasTikTokAdClick ? 'tiktok' : (hasRedditAdClick ? 'reddit' : '');
-  const source = (params.get('from') || params.get('utm_source') || inferredSource).toLowerCase();
+  const label = (params.get('from') || params.get('utm_source') || inferredSource).trim().toLowerCase();
+  const source = label === 'ig' ? 'instagram' : label === 'fb' ? 'facebook' : label;
   const medium = (params.get('utm_medium') || '').toLowerCase();
   const channels = new Set(['tiktok', 'facebook', 'instagram', 'reddit']);
   const paid = new Set(['paid', 'paid_social', 'cpc', 'ppc', 'ads']).has(medium)
@@ -78,7 +79,7 @@ if (!reducedMotion && 'IntersectionObserver' in window) {
 
 // Optional website analytics manages consent before loading Google's tag.
 const analytics = document.createElement('script');
-analytics.src = '/assets/analytics.js?v=20261103-features';
+analytics.src = '/assets/analytics.js?v=20261124-plans';
 analytics.async = true;
 document.head.appendChild(analytics);
 
