@@ -22,7 +22,11 @@ const nav = document.querySelector('[data-nav]');
     if (destination.hostname !== 'apps.apple.com' || !destination.pathname.endsWith('/id6815041207')) return;
     destination.searchParams.set('pt', '129494535');
     const entry = link.dataset?.storeEntry;
-    const suffix = { 'pro-preview': '_pro_preview', 'pro-host': '_pro_host' }[entry] || '';
+    const suffix = {
+      'pro-preview': '_pro_preview',
+      'pro-host': '_pro_host',
+      'walking-guide': '_walking_guide',
+    }[entry] || '';
     destination.searchParams.set('ct', campaign + suffix);
     destination.searchParams.set('mt', '8');
     link.href = destination.href;

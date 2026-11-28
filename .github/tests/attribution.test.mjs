@@ -15,6 +15,7 @@ function visit(search) {
     { href: 'https://cardiaworld.com/features/' },
     { href: 'https://apps.apple.com/us/app/cardia-world/id6815041207', dataset: { storeEntry: 'pro-preview' } },
     { href: 'https://apps.apple.com/us/app/cardia-world/id6815041207', dataset: { storeEntry: 'pro-host' } },
+    { href: 'https://apps.apple.com/us/app/cardia-world/id6815041207', dataset: { storeEntry: 'walking-guide' } },
   ].map(link => ({ ...link, getAttribute: () => link.href }));
   const document = {
     head: { appendChild() {} },
@@ -53,7 +54,7 @@ test('Reddit organic, existing TikTok, and unknown-source downloads remain disti
   assert.equal(visit('?utm_source=unknown')[0].searchParams.get('ct'), 'website');
 });
 
-test('Pro preview and Battle buttons preserve source and intent without sending visitor identifiers', () => {
+test('Tagged download links preserve source and intent without sending visitor identifiers', () => {
   for (const [query, campaign] of [
     ['', 'website'],
     ['?ttclid=private', 'tiktok_paid'],
@@ -64,7 +65,7 @@ test('Pro preview and Battle buttons preserve source and intent without sending 
   ]) {
     const links = visit(query);
     assert.equal(links[0].searchParams.get('ct'), campaign);
-    for (const [index, intent] of [[6, 'pro_preview'], [7, 'pro_host']]) {
+    for (const [index, intent] of [[6, 'pro_preview'], [7, 'pro_host'], [8, 'walking_guide']]) {
       assert.deepEqual(Object.fromEntries(links[index].searchParams), {
         pt: '129494535', ct: `${campaign}_${intent}`, mt: '8',
       });
